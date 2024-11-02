@@ -23,11 +23,11 @@ borrowedBookController.createBorrowedBook = async (req, res, next) => {
 
     const book = await books.findById(bookId);
     const borrower = await borrowers.findById(borrowerId);
-    if (!book || book.stock < 1) {
+    if (!book || book.stock < 1 || book.deletedAt !== undefined) {
       return res
         .status(400)
         .json({ message: "Buku tidak tersedia untuk dipinjam." });
-    } else if (!borrower) {
+    } else if (!borrower || borrower.deletedAt !== undefined) {
       return res.status(400).json({ message: "Data peminjam tidak tersedia" });
     }
 
@@ -48,7 +48,9 @@ borrowedBookController.createBorrowedBook = async (req, res, next) => {
     await newBorrow.save();
 
     book.stock -= 1;
+    borrower.borrowCount += 1;
     await book.save();
+    await borrower.save();
 
     res.status(201).json({
       message: "Peminjaman buku berhasil ditambahkan.",
@@ -61,7 +63,7 @@ borrowedBookController.createBorrowedBook = async (req, res, next) => {
 
 borrowedBookController.returnBook = async (req, res) => {
   try {
-    const { borrowId } = req.body;
+    const { borrowId, borrowerId, bookId } = req.body;
     const borrow = await borrowedBooks.findById(borrowId);
     if (!borrow || borrow.status !== "active") {
       return res
