@@ -13,7 +13,6 @@ const port = process.env.PORT
 connectDB()
 
 app.use(express.json());
-
 app.use("/api/v1",routes)
 
 
@@ -24,3 +23,5 @@ app.listen(port, () => {
 app.use(function (err, req, res, next) {
   res.status(500).send(err.message)
 })
+
+app.use(express.static('public/cover_book'))
