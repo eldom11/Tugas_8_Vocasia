@@ -13,7 +13,7 @@ borrowedBookController.getAllActiveborrowedBooks = async (req, res) => {
     // );
     res.json(activeBorrows);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: errorName.NOT_FOUND });
   }
 };
 

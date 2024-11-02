@@ -4,7 +4,7 @@ const { errorMsg, errorName } = require("../utils/error");
 const borrowerController = {};
 
 borrowerController.getAllBorrowers = async (req,res) => {
-    const borrower = await borrowers.find()
+    const borrower = await borrowers.find({ deletedAt: null })
     res.status(200).json({
         borrower
     })
@@ -13,6 +13,12 @@ borrowerController.getAllBorrowers = async (req,res) => {
 borrowerController.getBorrowerById = async (req,res) => {
     const borrowerId = req.params.id
     const borrower = await borrowers.findById(borrowerId)
+    if(!borrower){
+        return res.status(404).json({ message: "Borrower not found" })
+    }
+    if(borrower.deletedAt !== undefined){
+        return res.status(404).json({ message: "Borrower is Deleted" })
+    }
     res.status(200).json({
         borrower
     })
@@ -26,7 +32,6 @@ borrowerController.createBorrower = async (req,res, next) => {
         } = req.body;
 
         if (!name || !contact) {
-          // bad request
           throw { name: errorName.BAD_REQUEST, message: errorMsg.WRONG_INPUT };
         }
     
@@ -44,18 +49,37 @@ borrowerController.createBorrower = async (req,res, next) => {
       }
 }
 
-borrowerController.updateBorrower = async (req,res) => {
-    const borrowerId = req.params.id
-    const borrower = await borrowers.findByIdAndUpdate(borrowerId,req.body)
-    res.status(201).json({
-        borrower
-    })
+borrowerController.updateBorrower = async (req,res, next) => {
+    try {
+        const borrowerId = req.params.id
+        const {name, contact} = req.body
+        
+        const update = {
+            name,
+            contact,
+            updatedAt: new Date()
+        }
+
+        const borrower = await borrowers.findByIdAndUpdate(borrowerId,update, {new: true})
+        if(!borrower || borrower.deletedAt !== undefined){
+            return res.status(404).json({ message: "Category not found" })
+        }
+        const response = { message: "Category updated successfully", borrower };
+        res.status(200).json(response);
+    } catch (error) {
+        next(error);
+    }
 }
 
 borrowerController.deleteBorrower = async (req,res) => {
     const borrowerId = req.params.id
-    const borrower = await borrowers.findByIdAndDelete(borrowerId)
-    res.status(204).json({})
+    const borrower = await borrowers.findById(borrowerId)
+    if(!borrower || borrower.deletedAt !== undefined){
+        return res.status(404).json({ message: "Borrower not found or deleted" })
+    }
+    borrower.deletedAt = new Date()
+    await borrower.save()
+    return res.status(200).json({ message: "Borrower deleted successfully" })
 }
 
 
