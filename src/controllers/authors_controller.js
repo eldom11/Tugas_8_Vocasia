@@ -1,10 +1,11 @@
 const authors = require('../models/authors_model')
+const { upload } = require('../middleware/uploadFotoAuthor');
 const { errorMsg, errorName } = require("../utils/error");
 
 const authorController = {};
 
 authorController.getAllAuthors = async (req,res) => {
-    const author = await authors.find()
+    const author = await authors.find( { deletedAt: null } )
     res.status(200).json({
         author
     })
@@ -13,6 +14,12 @@ authorController.getAllAuthors = async (req,res) => {
 authorController.getAuthorById = async (req,res) => {
     const authorId = req.params.id
     const author = await authors.findById(authorId)
+    if (!author) {
+        return res.status(404).json({ message: "Author not found" });
+    }
+    if (author.deletedAt !== undefined){
+        return res.status(400).json({ message: "Author telah dihapus" });
+    } 
     res.status(200).json({
         author
     })
@@ -26,7 +33,6 @@ authorController.createAuthor = async (req,res, next) => {
         } = req.body;
 
         if (!name) {
-          // bad request
           throw { name: errorName.BAD_REQUEST, message: errorMsg.WRONG_INPUT };
         }
     
@@ -44,24 +50,51 @@ authorController.createAuthor = async (req,res, next) => {
       }
 }
 
-authorController.updateAuthor = async (req,res) => {
-    const authorId = req.params.id
-    const author = await authors.findByIdAndUpdate(authorId,req.body)
-    res.status(201).json({
-        author
-    })
+authorController.updateAuthor = async (req, res, next) => {
+    try {
+        const authorId = req.params.id
+        const {name, bio} = req.body
+        
+        const update = {
+            name,
+            bio,
+            updatedAt: new Date()
+        }
+
+        const author = await authors.findByIdAndUpdate(authorId,update, {new: true})
+        if(!author || author.deletedAt !== undefined){
+            return res.status(404).json({ message: "Author not found" })
+        }
+        const response = { message: "Author updated successfully", author };
+        res.status(200).json(response);
+    } catch (error) {
+        next(error);
+      }
 }
 
 authorController.deleteAuthor = async (req,res) => {
     const authorId = req.params.id
-    const author = await authors.findByIdAndDelete(authorId)
-    res.status(204).json({})
+    const author = await authors.findById(authorId)
+    if (!author || author.deletedAt !== undefined) {
+        return res.status(404).json({ message: "Author not found" });
+    }
+    author.deletedAt = new Date()
+    await author.save() 
+    res.status(200).json({ message: "Author deleted successfully" });
 }
 
 authorController.uploadImage = async (req,res) => {
-    res.status(200).json({
-        image : req.file.path
-    })
+    try {
+        const image = req.file ? req.file.filename : null;
+        res.status(200).json({
+            image: req.file.path
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: 'File upload failed',
+            error: error.message
+        });
+    }
 }
 
 module.exports = authorController;

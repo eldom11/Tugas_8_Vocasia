@@ -5,7 +5,8 @@ const author = mongoose.model("author", {
     bio: String,
     photo: String,
     createdAt: Date,
-    updatedAt: Date
+    updatedAt: Date,
+    deletedAt: Date,
 })
 
 module.exports = author

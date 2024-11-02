@@ -1,6 +1,6 @@
 const booksRoutes = require('express').Router()
 const booksController = require('../controllers/books_controller')
-const { upload } = require('../middleware/upload');
+const { upload } = require('../middleware/uploadCoverBooks');
 
 booksRoutes.get('/books',booksController.getAllBooks)
 booksRoutes.get('/book/:id',booksController.getBookById)    
