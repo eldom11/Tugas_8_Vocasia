@@ -4,7 +4,7 @@ const { errorMsg, errorName } = require("../utils/error");
 const categoryController = {};
 
 categoryController.getAllCategories = async (req,res) => {
-    const category = await categories.find()
+    const category = await categories.find( { deletedAt: null } )
     res.status(200).json({
         category
     })
@@ -13,6 +13,12 @@ categoryController.getAllCategories = async (req,res) => {
 categoryController.getCategoryById = async (req,res) => {
     const categoryId = req.params.id
     const category = await categories.findById(categoryId)
+    if(!category){
+        return res.status(404).json({ message: "Category not found" })
+    }
+    if(category.deletedAt !== undefined){
+        return res.status(404).json({ message: "Category is Deleted" })
+    }
     res.status(200).json({
         category
     })
@@ -26,7 +32,6 @@ categoryController.createCategory = async (req,res, next) => {
         } = req.body;
 
         if (!name) {
-          // bad request
           throw { name: errorName.BAD_REQUEST, message: errorMsg.WRONG_INPUT };
         }
     
@@ -44,18 +49,38 @@ categoryController.createCategory = async (req,res, next) => {
       }
 }
 
-categoryController.updateCategory = async (req,res) => {
-    const categoryId = req.params.id
-    const category = await categories.findByIdAndUpdate(categoryId,req.body)
-    res.status(201).json({
-        category
-    })
+categoryController.updateCategory = async (req,res, next) => {
+
+    try {
+        const categoryId = req.params.id
+        const {name, description} = req.body
+        
+        const update = {
+            name,
+            description,
+            updatedAt: new Date()
+        }
+
+        const category = await categories.findByIdAndUpdate(categoryId,update, {new: true})
+        if(!category || category.deletedAt !== undefined){
+            return res.status(404).json({ message: "Category not found" })
+        }
+        const response = { message: "Category updated successfully", category };
+        res.status(200).json(response);
+    } catch (error) {
+        next(error);
+    }
 }
 
 categoryController.deleteCategory = async (req,res) => {
     const categoryId = req.params.id
-    const category = await categories.findByIdAndDelete(categoryId)
-    res.status(204).json({})
+    const category = await categories.findById(categoryId)
+    if(!category || category.deletedAt !== undefined){
+        return res.status(404).json({ message: "Category not found" })
+    }
+    category.deletedAt = new Date()
+    await category.save()
+    res.status(200).json({ message: "Category deleted successfully" });
 }
 
 

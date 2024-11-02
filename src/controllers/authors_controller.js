@@ -69,7 +69,7 @@ authorController.updateAuthor = async (req, res, next) => {
         res.status(200).json(response);
     } catch (error) {
         next(error);
-      }
+    }
 }
 
 authorController.deleteAuthor = async (req,res) => {

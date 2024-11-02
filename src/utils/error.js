@@ -5,7 +5,7 @@ const errorName = {
 
 const errorMsg = {
   WRONG_INPUT: "wrong input",
-  NOTE_NOT_FOUND: "note not found",
+  NOTE_NOT_FOUND: "not found",
 };
 
 module.exports = {
