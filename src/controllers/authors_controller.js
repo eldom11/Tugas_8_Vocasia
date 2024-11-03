@@ -1,11 +1,11 @@
-const authors = require('../models/authors_model')
+const { Author, Book, Borrower, Category, BorrowedBook, StockLog } = require('../models');
 const { upload } = require('../middleware/uploadFotoAuthor');
 const { errorMsg, errorName } = require("../utils/error");
 
 const authorController = {};
 
 authorController.getAllAuthors = async (req,res) => {
-    const author = await authors.find( { deletedAt: null } )
+    const author = await Author.find( { deletedAt: null } )
     res.status(200).json({
         author
     })
@@ -13,7 +13,7 @@ authorController.getAllAuthors = async (req,res) => {
 
 authorController.getAuthorById = async (req,res) => {
     const authorId = req.params.id
-    const author = await authors.findById(authorId)
+    const author = await Author.findById(authorId)
     if (!author) {
         return res.status(404).json({ message: "Author not found" });
     }
@@ -36,7 +36,7 @@ authorController.createAuthor = async (req,res, next) => {
           throw { name: errorName.BAD_REQUEST, message: errorMsg.WRONG_INPUT };
         }
     
-        const author = new authors({
+        const author = new Author({
             name,
             bio,
             updatedAt: new Date(),
@@ -61,7 +61,7 @@ authorController.updateAuthor = async (req, res, next) => {
             updatedAt: new Date()
         }
 
-        const author = await authors.findByIdAndUpdate(authorId,update, {new: true})
+        const author = await Author.findByIdAndUpdate(authorId,update, {new: true})
         if(!author || author.deletedAt !== undefined){
             return res.status(404).json({ message: "Author not found" })
         }
@@ -74,7 +74,7 @@ authorController.updateAuthor = async (req, res, next) => {
 
 authorController.deleteAuthor = async (req,res) => {
     const authorId = req.params.id
-    const author = await authors.findById(authorId)
+    const author = await Author.findById(authorId)
     if (!author || author.deletedAt !== undefined) {
         return res.status(404).json({ message: "Author not found" });
     }

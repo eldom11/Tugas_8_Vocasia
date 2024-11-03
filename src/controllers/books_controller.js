@@ -1,6 +1,4 @@
-const books = require('../models/books_model')
-const categories = require('../models/categories_model')
-const authors = require('../models/authors_model')
+const { Author, Book, Borrower, Category, BorrowedBook, StockLog } = require('../models');
 const {upload} = require('../middleware/uploadCoverBooks');
 const { errorMsg, errorName } = require("../utils/error");
 
@@ -8,7 +6,7 @@ const booksController = {};
 
 booksController.getAllBooks = async (req, res, next) => {
   try {
-    const book = await books.find({ deletedAt: null });
+    const book = await Book.find({ deletedAt: null }).populate('authorId', 'name bio').populate('categoryIds', 'name description');
     res.status(200).json({ book });
   } catch (error) {
     next(error);
@@ -19,7 +17,7 @@ booksController.getAllBooks = async (req, res, next) => {
 booksController.getBookById = async (req,res, next) => {
     try{
       const bookId = req.params.id
-      const book = await books.findById(bookId)
+      const book = await Book.findById(bookId).populate('authorId', 'name').populate('categoryIds', 'name')
       if(!book){
         return res.status(404).json({ message: "Book not found" })
       }
@@ -38,7 +36,7 @@ booksController.createBook = async (req, res, next) => {
     try {
       const { title, authorId, description, categoryIds, stock } = req.body;
   
-      const authorExists = await authors.findById(authorId);
+      const authorExists = await Author.findById(authorId);
       if (!authorExists) {
         return res.status(400).json({ message: "Invalid Author ID" });
       }
@@ -47,7 +45,7 @@ booksController.createBook = async (req, res, next) => {
       const invalidCategories = [];
   
       for (const catId of categoryIds) {
-        const category = await categories.findById(catId);
+        const category = await Category.findById(catId);
         if (!category || category.deletedAt !== undefined) {
           invalidCategories.push(catId); 
         } else {
@@ -55,7 +53,7 @@ booksController.createBook = async (req, res, next) => {
         }
       }
 
-      const book = new books({
+      const book = new Book({
         title,
         authorId,
         description,
@@ -66,7 +64,7 @@ booksController.createBook = async (req, res, next) => {
       });
   
       await book.save();
-  
+      
       const response = {
         message: "Book created successfully.",
         book: book,
@@ -76,7 +74,7 @@ booksController.createBook = async (req, res, next) => {
         response.warning = `category id berikut belum dimasukkan dalam database categories atau telah dihapus: ${invalidCategories.join(", ")}`;
       }
   
-      res.status(201).json(response);
+      res.status(201).json(response).populate('authorId', 'name').populate('categoryIds', 'name');
     } catch (error) {
       next(error);
     }
@@ -87,9 +85,9 @@ booksController.updateBook = async (req, res, next) => {
       const bookId = req.params.id;
       const { title, authorId, description, categoryIds, stock } = req.body;
   
-      const authorExists = await authors.findById(authorId);
+      const author = await Author.findById(authorId);
       if (authorId !== undefined){
-        if (!authorExists) {
+        if (!author) {
           return res.status(400).json({ message: "Invalid Author ID" });
         }
       }
@@ -98,7 +96,7 @@ booksController.updateBook = async (req, res, next) => {
         const validCategories = [];
         const invalidCategories = [];
         for (const catId of categoryIds) {
-          const category = await categories.findById(catId);
+          const category = await Category.findById(catId);
           if (!category || category.deletedAt !== undefined) {
             invalidCategories.push(catId); 
           } else {
@@ -114,7 +112,7 @@ booksController.updateBook = async (req, res, next) => {
           stock,
           updatedAt: new Date(),
         };
-        const book = await books.findByIdAndUpdate(bookId, updateData, { new: true });
+        const book = await Book.findByIdAndUpdate(bookId, updateData, { new: true }).populate('authorId', 'name').populate('categoryIds', 'name');
         if (!book) return res.status(404).json({ message: "Book not found" });
     
         const response = { message: "Book updated successfully", book };
@@ -132,7 +130,7 @@ booksController.updateBook = async (req, res, next) => {
         updatedAt: new Date(),
       };
   
-      const book = await books.findByIdAndUpdate(bookId, updateData, { new: true });
+      const book = await Book.findByIdAndUpdate(bookId, updateData, { new: true }).populate('authorId', 'name').populate('categoryIds', 'name');
       if (!book || book.deletedAt !== undefined) {
         return res.status(404).json({ message: "Book not found" });
       }
@@ -147,7 +145,7 @@ booksController.updateBook = async (req, res, next) => {
 booksController.deleteBook = async (req,res, next) => {
   try{
     const bookId = req.params.id
-    const book = await books.findById(bookId)
+    const book = await Book.findById(bookId)
     if (!book || book.deletedAt !== undefined){ 
         return res.status(404).json({ message: "Book not found" });
     }

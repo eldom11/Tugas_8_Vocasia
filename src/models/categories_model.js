@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const category = mongoose.model("category", {
+const category = new mongoose.Schema({
     name: { type: String, required: true },
     description: String,
     createdAt: Date,

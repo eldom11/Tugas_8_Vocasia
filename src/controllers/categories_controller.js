@@ -1,10 +1,10 @@
-const categories = require('../models/categories_model')
+const { Author, Book, Borrower, Category, BorrowedBook, StockLog } = require('../models');
 const { errorMsg, errorName } = require("../utils/error");
 
 const categoryController = {};
 
 categoryController.getAllCategories = async (req,res) => {
-    const category = await categories.find( { deletedAt: null } )
+    const category = await Category.find( { deletedAt: null } )
     res.status(200).json({
         category
     })
@@ -12,7 +12,7 @@ categoryController.getAllCategories = async (req,res) => {
 
 categoryController.getCategoryById = async (req,res) => {
     const categoryId = req.params.id
-    const category = await categories.findById(categoryId)
+    const category = await Category.findById(categoryId)
     if(!category){
         return res.status(404).json({ message: "Category not found" })
     }
@@ -35,7 +35,7 @@ categoryController.createCategory = async (req,res, next) => {
           throw { name: errorName.BAD_REQUEST, message: errorMsg.WRONG_INPUT };
         }
     
-        const category = new categories({
+        const category = new Category({
             name,
             description,
             updatedAt: new Date(),
@@ -61,7 +61,7 @@ categoryController.updateCategory = async (req,res, next) => {
             updatedAt: new Date()
         }
 
-        const category = await categories.findByIdAndUpdate(categoryId,update, {new: true})
+        const category = await Category.findByIdAndUpdate(categoryId,update, {new: true})
         if(!category || category.deletedAt !== undefined){
             return res.status(404).json({ message: "Category not found" })
         }
@@ -74,7 +74,7 @@ categoryController.updateCategory = async (req,res, next) => {
 
 categoryController.deleteCategory = async (req,res) => {
     const categoryId = req.params.id
-    const category = await categories.findById(categoryId)
+    const category = await Category.findById(categoryId)
     if(!category || category.deletedAt !== undefined){
         return res.status(404).json({ message: "Category not found" })
     }

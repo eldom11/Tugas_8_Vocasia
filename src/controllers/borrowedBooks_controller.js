@@ -1,14 +1,12 @@
-const borrowedBooks = require("../models/borrowedBooks_model");
-const StockLog = require("../models/stockLog_model");
-const books = require("../models/books_model");
-const borrowers = require("../models/borrowers_model");
+const { Author, Book, Borrower, Category, BorrowedBook, StockLog } = require('../models');
 const { errorMsg, errorName } = require("../utils/error");
 const calculateFine = require("../utils/calculateFine");
+
 const borrowedBookController = {};
 
 borrowedBookController.getAllActiveborrowedBooks = async (req, res) => {
   try {
-    const activeBorrows = await borrowedBooks.find({ status: "active" })
+    const activeBorrows = await BorrowedBook.find({ status: "active" })
     // .populate(
     //   "bookId borrowerId"
     // );
@@ -22,8 +20,8 @@ borrowedBookController.createBorrowedBook = async (req, res, next) => {
   try {
     const { bookId, borrowerId, borrowDurationDays } = req.body;
 
-    const book = await books.findById(bookId);
-    const borrower = await borrowers.findById(borrowerId);
+    const book = await Book.findById(bookId);
+    const borrower = await Borrower.findById(borrowerId);
     if (!book || book.stock < 1 || book.deletedAt !== undefined) {
       return res.status(400).json({ message: "Buku tidak tersedia untuk dipinjam." });
     } else if (!borrower || borrower.deletedAt!== undefined) {
@@ -34,7 +32,7 @@ borrowedBookController.createBorrowedBook = async (req, res, next) => {
     const dueDate = new Date(borrowDate);
     dueDate.setDate(dueDate.getDate() + borrowDurationDays);
 
-    const newBorrow = new borrowedBooks({
+    const newBorrow = new BorrowedBook({
       bookId,
       borrowerId,
       borrowDate,
@@ -72,7 +70,7 @@ borrowedBookController.createBorrowedBook = async (req, res, next) => {
 borrowedBookController.returnBook = async (req, res) => {
   try {
     const { borrowId, borrowerId, bookId } = req.body;
-    const borrow = await borrowedBooks.findById(borrowId);
+    const borrow = await BorrowedBook.findById(borrowId);
     if (!borrow || borrow.status !== "active") {
       return res.status(400).json({ message: "Peminjaman tidak valid atau sudah dikembalikan." });
     }
@@ -82,7 +80,7 @@ borrowedBookController.returnBook = async (req, res) => {
 
     const fine = calculateFine(borrow.returnDate, borrow.dueDate);
 
-    const book = await books.findById(borrow.bookId);
+    const book = await Book.findById(borrow.bookId);
     if (book) {
       book.stock += 1;
       await book.save();

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const borrowedBook = mongoose.model("borrowedBook", {
+const borrowedBook = new mongoose.Schema({
     bookId: { type: mongoose.Schema.Types.ObjectId, ref: 'Books', required: true },
     borrowerId: { type: mongoose.Schema.Types.ObjectId, ref: 'Borrowers', required: true },
     borrowDate: { type: Date, default: Date.now },

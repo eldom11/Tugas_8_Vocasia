@@ -1,10 +1,10 @@
-const borrowers = require('../models/borrowers_model')
+const { Author, Book, Borrower, Category, BorrowedBook, StockLog } = require('../models');
 const { errorMsg, errorName } = require("../utils/error");
 
 const borrowerController = {};
 
 borrowerController.getAllBorrowers = async (req,res) => {
-    const borrower = await borrowers.find({ deletedAt: null })
+    const borrower = await Borrower.find({ deletedAt: null })
     res.status(200).json({
         borrower
     })
@@ -12,7 +12,7 @@ borrowerController.getAllBorrowers = async (req,res) => {
 
 borrowerController.getBorrowerById = async (req,res) => {
     const borrowerId = req.params.id
-    const borrower = await borrowers.findById(borrowerId)
+    const borrower = await Borrower.findById(borrowerId)
     if(!borrower){
         return res.status(404).json({ message: "Borrower not found" })
     }
@@ -35,7 +35,7 @@ borrowerController.createBorrower = async (req,res, next) => {
           throw { name: errorName.BAD_REQUEST, message: errorMsg.WRONG_INPUT };
         }
     
-        const borrower = new borrowers({
+        const borrower = new Borrower({
             name,
             contact,
             updatedAt: new Date(),
@@ -60,7 +60,7 @@ borrowerController.updateBorrower = async (req,res, next) => {
             updatedAt: new Date()
         }
 
-        const borrower = await borrowers.findByIdAndUpdate(borrowerId,update, {new: true})
+        const borrower = await Borrower.findByIdAndUpdate(borrowerId,update, {new: true})
         if(!borrower || borrower.deletedAt !== undefined){
             return res.status(404).json({ message: "Category not found" })
         }
@@ -73,7 +73,7 @@ borrowerController.updateBorrower = async (req,res, next) => {
 
 borrowerController.deleteBorrower = async (req,res) => {
     const borrowerId = req.params.id
-    const borrower = await borrowers.findById(borrowerId)
+    const borrower = await Borrower.findById(borrowerId)
     if(!borrower || borrower.deletedAt !== undefined){
         return res.status(404).json({ message: "Borrower not found or deleted" })
     }

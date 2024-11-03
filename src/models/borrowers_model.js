@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const borrower = mongoose.model("borrower", {
+const borrower = new mongoose.Schema({
     name: { type: String, required: true },
     contact: String,
     joinAt: Date,
