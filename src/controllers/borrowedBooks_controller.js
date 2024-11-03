@@ -1,4 +1,5 @@
 const borrowedBooks = require("../models/borrowedBooks_model");
+const StockLog = require("../models/stockLog_model");
 const books = require("../models/books_model");
 const borrowers = require("../models/borrowers_model");
 const { errorMsg, errorName } = require("../utils/error");
@@ -24,10 +25,8 @@ borrowedBookController.createBorrowedBook = async (req, res, next) => {
     const book = await books.findById(bookId);
     const borrower = await borrowers.findById(borrowerId);
     if (!book || book.stock < 1 || book.deletedAt !== undefined) {
-      return res
-        .status(400)
-        .json({ message: "Buku tidak tersedia untuk dipinjam." });
-    } else if (!borrower || borrower.deletedAt !== undefined) {
+      return res.status(400).json({ message: "Buku tidak tersedia untuk dipinjam." });
+    } else if (!borrower || borrower.deletedAt!== undefined) {
       return res.status(400).json({ message: "Data peminjam tidak tersedia" });
     }
 
@@ -45,7 +44,15 @@ borrowedBookController.createBorrowedBook = async (req, res, next) => {
       createdAt: new Date(),
     });
 
+    const stockLog = new StockLog({
+      bookId: book._id,
+      borrowerId: borrower._id,
+      change: -1,
+      description: "Borrowed book",
+    });
+
     await newBorrow.save();
+    await stockLog.save();
 
     book.stock -= 1;
     borrower.borrowCount += 1;
@@ -61,14 +68,13 @@ borrowedBookController.createBorrowedBook = async (req, res, next) => {
   }
 };
 
+
 borrowedBookController.returnBook = async (req, res) => {
   try {
     const { borrowId, borrowerId, bookId } = req.body;
     const borrow = await borrowedBooks.findById(borrowId);
     if (!borrow || borrow.status !== "active") {
-      return res
-        .status(400)
-        .json({ message: "Peminjaman tidak valid atau sudah dikembalikan." });
+      return res.status(400).json({ message: "Peminjaman tidak valid atau sudah dikembalikan." });
     }
 
     borrow.status = "returned";
@@ -82,6 +88,14 @@ borrowedBookController.returnBook = async (req, res) => {
       await book.save();
     }
 
+    const stockLog = new StockLog({
+      bookId: book._id,
+      borrowerId: borrow.borrowerId,
+      change: +1,
+      description: "Returned book",
+    });
+
+    await stockLog.save();
     await borrow.save();
 
     res.status(200).json({ message: "Buku berhasil dikembalikan", fine });
@@ -89,5 +103,6 @@ borrowedBookController.returnBook = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
 
 module.exports = borrowedBookController;
