@@ -1,5 +1,6 @@
 const { Author, Book, Borrower, Category, BorrowedBook, StockLog } = require('../models');
 const { errorMsg, errorName } = require("../utils/error");
+const mongoose = require('mongoose')
 
 const borrowerController = {};
 
@@ -34,7 +35,7 @@ borrowerController.createBorrower = async (req, res, next) => {
         } = req.body;
     
         if (!name || !contact) {
-            throw { name: errorName.BAD_REQUEST, message: errorMsg.WRONG_INPUT };
+            return res.status(400).json({ message: "The name or contact cannot be empty" });
         }
     
         const borrower = new Borrower({ 

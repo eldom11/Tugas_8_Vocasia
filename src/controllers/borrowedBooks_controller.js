@@ -1,6 +1,7 @@
 const { Author, Book, Borrower, Category, BorrowedBook, StockLog } = require('../models');
 const { errorMsg, errorName } = require("../utils/error");
 const calculateFine = require("../utils/calculateFine");
+const mongoose = require('mongoose')
 
 const borrowedBookController = {};
 

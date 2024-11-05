@@ -35,7 +35,7 @@ authorController.createAuthor = async (req, res, next) => {
         } = req.body;
 
         if (!name) {
-            throw { name: errorName.BAD_REQUEST, message: errorMsg.WRONG_INPUT };
+            return res.status(400).json({ message: "The name cannot be empty" });
         }
 
         const author = new Author({
