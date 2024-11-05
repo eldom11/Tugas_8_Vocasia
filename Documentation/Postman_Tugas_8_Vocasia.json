@@ -1,0 +1,4831 @@
+{
+	"info": {
+		"_postman_id": "2815e44a-5048-4995-a294-07016ee55d1e",
+		"name": "Tugas 8 Vocasia",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39416004"
+	},
+	"item": [
+		{
+			"name": "Author",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Eldoni Mosul\",\r\n    \"bio\": \"Pengendali petir\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/author",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"author"
+							]
+						},
+						"description": "### Author Creation\n\nThis endpoint allows the creation of a new author.\n\n#### Request Body\n\n- `name` (string, required): The name of the author.\n    \n- `bio` (string, required): A brief biography of the author.\n    \n\n#### Response\n\nThe response is in JSON format with the following schema:\n\n``` json\n{\n    \"type\": \"object\",\n    \"properties\": {\n        \"name\": {\n            \"type\": \"string\"\n        },\n        \"bio\": {\n            \"type\": \"string\"\n        },\n        \"_id\": {\n            \"type\": \"string\"\n        },\n        \"createdAt\": {\n            \"type\": \"string\"\n        },\n        \"updatedAt\": {\n            \"type\": \"string\"\n        },\n        \"__v\": {\n            \"type\": \"number\"\n        }\n    }\n}\n\n ```\n\n#### Example\n\nRequest:\n\n``` json\n{\n    \"name\": \"John Doe\",\n    \"bio\": \"An accomplished author\"\n}\n\n ```\n\nResponse:\n\n``` json\n{\n    \"name\": \"John Doe\",\n    \"bio\": \"An accomplished author\",\n    \"_id\": \"some_id\",\n    \"createdAt\": \"2022-01-01T00:00:00.000Z\",\n    \"updatedAt\": \"2022-01-01T00:00:00.000Z\",\n    \"__v\": 0\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "201 Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Eldoni Mosul\",\r\n    \"bio\": \"Pengendali petir\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/author",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"author"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "167"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a7-iHopygzbRoTT4ecf68KIbAFHByo\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 04:45:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"Eldoni Mosul\",\n    \"bio\": \"Pengendali petir\",\n    \"_id\": \"6729a2ed4cf7422b00b4922f\",\n    \"createdAt\": \"2024-11-05T04:45:33.783Z\",\n    \"updatedAt\": \"2024-11-05T04:45:33.784Z\",\n    \"__v\": 0\n}"
+						},
+						{
+							"name": "400 Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"\",\r\n    \"bio\": \"Pengendali petir\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/author",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"author"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26-ljpz0qMnYeo7WR6bCKhtBOpys2Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 05:41:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"The name cannot be empty\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"description": "The endpoint retrieves a list of authors.\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"author\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"_id\": {\n            \"type\": \"string\"\n          },\n          \"name\": {\n            \"type\": \"string\"\n          },\n          \"bio\": {\n            \"type\": \"string\"\n          },\n          \"createdAt\": {\n            \"type\": \"string\"\n          },\n          \"updatedAt\": {\n            \"type\": \"string\"\n          },\n          \"__v\": {\n            \"type\": \"integer\"\n          }\n        }\n      }\n    }\n  }\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "200 OK Get All",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Amaliyah\",\r\n    \"bio\": \"Pengendali mosul\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/authors",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"authors"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "344"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"158-37yBrCVLVe/U5zTLfw9tWNTVGMQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 04:47:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"author\": [\n        {\n            \"_id\": \"6729a2ed4cf7422b00b4922f\",\n            \"name\": \"Eldoni Mosul\",\n            \"bio\": \"Pengendali petir\",\n            \"createdAt\": \"2024-11-05T04:45:33.783Z\",\n            \"updatedAt\": \"2024-11-05T04:45:33.784Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6729a3624cf7422b00b49231\",\n            \"name\": \"Amaliyah\",\n            \"bio\": \"Pengendali mosul\",\n            \"createdAt\": \"2024-11-05T04:47:30.114Z\",\n            \"updatedAt\": \"2024-11-05T04:47:30.114Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "after deleted",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/authors",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"authors"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "184"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b8-Ttqy8vdsFLa16Ik1N4a6m/dMr5k\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 04:55:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"author\": [\n        {\n            \"_id\": \"6729a2ed4cf7422b00b4922f\",\n            \"name\": \"Mosul Si Ganteng\",\n            \"bio\": \"Pengendali petir\",\n            \"createdAt\": \"2024-11-05T04:45:33.783Z\",\n            \"updatedAt\": \"2024-11-05T04:51:19.300Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/author/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"author",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6729a2ed4cf7422b00b4922f"
+								}
+							]
+						},
+						"description": "### GET /api/v1/author/:id\n\nThis endpoint retrieves author details based on the provided ID.\n\n#### Request\n\nNo request body is required for this endpoint.\n\n- `:id` (path parameter) - The unique identifier of the author.\n    \n\n#### Response\n\nThe response will be in JSON format and will contain the author details. The response schema is as follows:\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"author\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"_id\": { \"type\": \"string\" },\n        \"name\": { \"type\": \"string\" },\n        \"bio\": { \"type\": \"string\" },\n        \"createdAt\": { \"type\": \"string\" },\n        \"updatedAt\": { \"type\": \"string\" },\n        \"__v\": { \"type\": \"number\" },\n        \"photo\": { \"type\": \"string\" }\n      }\n    }\n  }\n}\n\n ```\n\nIn case the author with the provided ID is not found, the response will have a status code of 404 and an empty JSON object with a \"message\" property."
+					},
+					"response": [
+						{
+							"name": "200 OK Get By Id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/author/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"author",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729a2ed4cf7422b00b4922f"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "178"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b2-A/XTG8qh5u2oXAo5D+Kmt6BdfMk\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 04:49:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"author\": {\n        \"_id\": \"6729a2ed4cf7422b00b4922f\",\n        \"name\": \"Eldoni Mosul\",\n        \"bio\": \"Pengendali petir\",\n        \"createdAt\": \"2024-11-05T04:45:33.783Z\",\n        \"updatedAt\": \"2024-11-05T04:45:33.784Z\",\n        \"__v\": 0\n    }\n}"
+						},
+						{
+							"name": "after updated",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/author/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"author",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729a2ed4cf7422b00b4922f"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "182"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b6-jreFM3jS25PMw6sl837g1eOhuzE\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 04:56:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"author\": {\n        \"_id\": \"6729a2ed4cf7422b00b4922f\",\n        \"name\": \"Mosul Si Ganteng\",\n        \"bio\": \"Pengendali petir\",\n        \"createdAt\": \"2024-11-05T04:45:33.783Z\",\n        \"updatedAt\": \"2024-11-05T04:51:19.300Z\",\n        \"__v\": 0\n    }\n}"
+						},
+						{
+							"name": "after Upload",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/author/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"author",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729a2ed4cf7422b00b4922f"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "249"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f9-QRBaJcKaJa2cjvPf5xoO/tFXIR4\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 05:00:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"author\": {\n        \"_id\": \"6729a2ed4cf7422b00b4922f\",\n        \"name\": \"Mosul Si Ganteng\",\n        \"bio\": \"Pengendali petir\",\n        \"createdAt\": \"2024-11-05T04:45:33.783Z\",\n        \"updatedAt\": \"2024-11-05T04:51:19.300Z\",\n        \"__v\": 0,\n        \"photo\": \"public\\\\author_image\\\\1730782784363-Foto almet mosul.jpg\"\n    }\n}"
+						},
+						{
+							"name": "404 After Deleted",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/author/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"author",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729a3624cf7422b00b49231"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "34"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"22-dfykhApfQueCyMqll6SMvHXBuOI\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 05:40:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Author telah dihapus\"\n}"
+						},
+						{
+							"name": "404 Not Found Wrong Id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/author/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"author",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729a3624cf7422b00b49232"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "30"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1e-y3zpkhvayOcVhm0y0iPx0hC4CvA\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 06:45:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Author not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Mosul Si Ganteng\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/author/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"author",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6729a2ed4cf7422b00b4922f"
+								}
+							]
+						},
+						"description": "### Update Author Details\n\nThis endpoint allows the client to update the details of a specific author.\n\n#### Request Body\n\n- `name`: (string) The updated name of the author.\n    \n\nExample:\n\n``` json\n{\n    \"name\": \"Updated Author Name\"\n}\n\n ```\n\n#### Response\n\n- Status: 200\n    \n- Content-Type: application/json\n    \n\nExample Response Body:\n\n``` json\n{\n    \"message\": \"\",\n    \"author\": {\n        \"_id\": \"\",\n        \"name\": \"\",\n        \"bio\": \"\",\n        \"createdAt\": \"\",\n        \"updatedAt\": \"\",\n        \"__v\": 0\n    }\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Mosul Si Ganteng\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/author/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"author",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729a2ed4cf7422b00b4922f"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "222"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"de-0Mk4Mp+jcjxrp23EJGKoVIClvzs\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 04:51:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Author updated successfully\",\n    \"author\": {\n        \"_id\": \"6729a2ed4cf7422b00b4922f\",\n        \"name\": \"Mosul Si Ganteng\",\n        \"bio\": \"Pengendali petir\",\n        \"createdAt\": \"2024-11-05T04:45:33.783Z\",\n        \"updatedAt\": \"2024-11-05T04:51:19.300Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/author/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"author",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6729a3624cf7422b00b49231"
+								}
+							]
+						},
+						"description": "### Delete Author by ID\n\nThis endpoint is used to delete an author by their unique ID.\n\n#### Request Body\n\nThis request does not require a request body.\n\n#### Response\n\n- Status: 200\n    \n- Content-Type: application/json\n    \n\nExample Response Body:\n\n``` json\n{\n    \"message\": \"\"\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/author/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"author",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729a3624cf7422b00b49231"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29-y5E/g1GAJiT/kj57/wpYgn2BeFk\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 04:53:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Author deleted successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "upload",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "authorId",
+									"value": "6729a2ed4cf7422b00b4922f",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/EL/OneDrive/Pictures/Foto almet mosul.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/author/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"author",
+								"upload"
+							]
+						},
+						"description": "### Upload Author Image\n\nThis endpoint allows you to upload an image for a specific author.\n\n#### Request Body\n\n- `authorId` (text): The ID of the author for whom the image is being uploaded.\n    \n- `image` (file): The image file to be uploaded.\n    \n\n#### Response\n\nUpon a successful upload, the server responds with a status code of 200 and a JSON object containing:\n\n- `message`: A message indicating the success of the upload.\n    \n- `coverImage`: The URL or identifier of the uploaded image.\n    \n\n#### Example\n\n``` json\n{\n    \"message\": \"Image uploaded successfully\",\n    \"coverImage\": \"https://example.com/author/image.jpg\"\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "400 Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "authorID",
+											"value": "6729a2ed4cf7422b00b4922f",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/EL/OneDrive/Pictures/Foto almet mosul.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/author/upload",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"author",
+										"upload"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2e-5LHL64Y/xKEXJrc9MRHu6kXW0N4\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 04:59:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Author ID and image are required\"\n}"
+						},
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "authorId",
+											"value": "6729a2ed4cf7422b00b4922f",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/EL/OneDrive/Pictures/Foto almet mosul.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/author/upload",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"author",
+										"upload"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "113"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"71-3N783EEwkcBshOAP/TOWOKLuCd0\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 04:59:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Image uploaded successfully\",\n    \"coverImage\": \"public\\\\author_image\\\\1730782784363-Foto almet mosul.jpg\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Comedy\",\r\n    \"description\": \"Romansa, Hubungan, Cinta kasih\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"category"
+							]
+						},
+						"description": "### Add Category\n\nThis endpoint allows you to add a new category.\n\n#### Request Body\n\n- `name`: (string) The name of the category.\n    \n- `description`: (string) The description of the category.\n    \n\nExample:\n\n``` json\n{\n  \"name\": \"Comedy\",\n  \"description\": \"Romansa, Hubungan, Cinta kasih\"\n}\n\n ```\n\n#### Response\n\n- Status: 400\n    \n- Content-Type: application/json\n    \n- `message`: (string) A message indicating the reason for the bad request.\n    \n\nExample Response Body:\n\n``` json\n{\n  \"name\": \"\",\n  \"description\": \"\",\n  \"_id\": \"\",\n  \"createdAt\": \"\",\n  \"updatedAt\": \"\",\n  \"__v\": 0\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "201 Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Comedy\",\r\n    \"description\": \"Lucu, menyenangkan, Menghibur\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/category",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"category"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "182"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b6-78XNZTPCpeB/7s9Qnm2bCzBQG50\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 05:08:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"Comedy\",\n    \"description\": \"Lucu, menyenangkan, Menghibur\",\n    \"_id\": \"6729a862d96b4f31cb8ea5df\",\n    \"createdAt\": \"2024-11-05T05:08:50.328Z\",\n    \"updatedAt\": \"2024-11-05T05:08:50.330Z\",\n    \"__v\": 0\n}"
+						},
+						{
+							"name": "400 Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"\",\r\n    \"description\": \"Lucu, menyenangkan, Menghibur\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/category",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"category"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26-ljpz0qMnYeo7WR6bCKhtBOpys2Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 05:17:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"The name cannot be empty\"\n}"
+						},
+						{
+							"name": "400 name Harus Uniqe",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Comedy\",\r\n    \"description\": \"Romansa, Hubungan, Cinta kasih\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/category",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"category"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-/wvUsZ8l/q7tpAFnIwMw+rtDleU\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 05:25:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Category name must be unique\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"categories"
+							]
+						},
+						"description": "This endpoint makes an HTTP GET request to retrieve a list of categories. The request does not require any parameters in the request body or URL. The response will be in JSON format and will contain an array of category objects, each with properties such as _id, name, description, createdAt, updatedAt, and __v. The values for these properties will be specific to each category. The status code for a successful response is 200."
+					},
+					"response": [
+						{
+							"name": "200 OK Get All",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/categories",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"categories"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "562"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"232-jKYyhirnn6CASJxB1x+wPKMk9KM\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 05:26:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"category\": [\n        {\n            \"_id\": \"6729a862d96b4f31cb8ea5df\",\n            \"name\": \"Comedy\",\n            \"description\": \"Lucu, menyenangkan, Menghibur\",\n            \"createdAt\": \"2024-11-05T05:08:50.328Z\",\n            \"updatedAt\": \"2024-11-05T05:08:50.330Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6729aac0be772fdba406fe99\",\n            \"name\": \"Horor\",\n            \"description\": \"Menyeramkan, Adrenalin, 15+\",\n            \"createdAt\": \"2024-11-05T05:18:56.097Z\",\n            \"updatedAt\": \"2024-11-05T05:18:56.098Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6729aaddbe772fdba406fe9b\",\n            \"name\": \"Romance\",\n            \"description\": \"Romansa, Hubungan, Cinta kasih\",\n            \"createdAt\": \"2024-11-05T05:19:25.316Z\",\n            \"updatedAt\": \"2024-11-05T05:19:25.318Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "After Deleted",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/categories",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"categories"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "379"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"17b-AoGwfcVrZPBtCC3NX5QAaIt+Hiw\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 05:37:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"category\": [\n        {\n            \"_id\": \"6729aac0be772fdba406fe99\",\n            \"name\": \"Horor\",\n            \"description\": \"Menyeramkan, Adrenalin, 15+\",\n            \"createdAt\": \"2024-11-05T05:18:56.097Z\",\n            \"updatedAt\": \"2024-11-05T05:18:56.098Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6729aaddbe772fdba406fe9b\",\n            \"name\": \"Romance\",\n            \"description\": \"Romansa, Hubungan, Cinta kasih\",\n            \"createdAt\": \"2024-11-05T05:19:25.316Z\",\n            \"updatedAt\": \"2024-11-05T05:19:25.318Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/category/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"category",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6729a862d96b4f31cb8ea5df"
+								}
+							]
+						},
+						"description": "The endpoint retrieves the details of a specific category identified by the provided ID.\n\nThe response of this request can be documented as a JSON schema as follows:\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"category\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"_id\": {\n          \"type\": \"string\"\n        },\n        \"name\": {\n          \"type\": \"string\"\n        },\n        \"description\": {\n          \"type\": \"string\"\n        },\n        \"createdAt\": {\n          \"type\": \"string\"\n        },\n        \"updatedAt\": {\n          \"type\": \"string\"\n        },\n        \"__v\": {\n          \"type\": \"integer\"\n        }\n      }\n    }\n  }\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "200 OK Get By Id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/category/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"category",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729a862d96b4f31cb8ea5df"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "195"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c3-r8gzd5mCNhKsUZ5t5K8MhymqhNI\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 05:29:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"category\": {\n        \"_id\": \"6729a862d96b4f31cb8ea5df\",\n        \"name\": \"Comedy\",\n        \"description\": \"Lucu, menyenangkan, Menghibur\",\n        \"createdAt\": \"2024-11-05T05:08:50.328Z\",\n        \"updatedAt\": \"2024-11-05T05:08:50.330Z\",\n        \"__v\": 0\n    }\n}"
+						},
+						{
+							"name": "404 Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/category/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"category",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729a862d96b4f31cb8ea5de"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"20-UIf8FxlyOJoAChyWA7ngWtBn3+o\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 05:30:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Category not found\"\n}"
+						},
+						{
+							"name": "after Update",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/category/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"category",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729a862d96b4f31cb8ea5df"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "175"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"af-Zvs1syfp61ZdxxdivVFDSp6G/J0\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 05:33:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"category\": {\n        \"_id\": \"6729a862d96b4f31cb8ea5df\",\n        \"name\": \"Comedy\",\n        \"description\": \"lucu ajah\",\n        \"createdAt\": \"2024-11-05T05:08:50.328Z\",\n        \"updatedAt\": \"2024-11-05T05:32:47.482Z\",\n        \"__v\": 0\n    }\n}"
+						},
+						{
+							"name": "after deleted",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/category/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"category",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729a862d96b4f31cb8ea5df"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"21-jybEbOnt+cx9Uo7RrUH34Tz1fyc\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 05:35:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Category is Deleted\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"lucu ajah\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/category/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"category",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6729a862d96b4f31cb8ea5df"
+								}
+							]
+						},
+						"description": "### Update Category\n\nThis endpoint is used to update a specific category.\n\n#### Request\n\n- Method: PUT\n    \n- URL: `http://localhost:3000/api/v1/category/:id`\n    \n- { \"description\": \"lucu ajah\"\n    \n\n#### Response\n\nThe response for this request can be represented as a JSON schema:\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"message\": {\n      \"type\": \"string\"\n    },\n    \"category\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"_id\": {\n          \"type\": \"string\"\n        },\n        \"name\": {\n          \"type\": \"string\"\n        },\n        \"description\": {\n          \"type\": \"string\"\n        },\n        \"createdAt\": {\n          \"type\": \"string\"\n        },\n        \"updatedAt\": {\n          \"type\": \"string\"\n        },\n        \"__v\": {\n          \"type\": \"number\"\n        }\n      }\n    }\n  }\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "200 OK Updated",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\": \"lucu ajah\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/category/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"category",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729a862d96b4f31cb8ea5df"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "217"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d9-xqfz0f8n7tND/wpSbcmDujRIyqs\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 05:32:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Category updated successfully\",\n    \"category\": {\n        \"_id\": \"6729a862d96b4f31cb8ea5df\",\n        \"name\": \"Comedy\",\n        \"description\": \"lucu ajah\",\n        \"createdAt\": \"2024-11-05T05:08:50.328Z\",\n        \"updatedAt\": \"2024-11-05T05:32:22.508Z\",\n        \"__v\": 0\n    }\n}"
+						},
+						{
+							"name": "404 Not Found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\": \"lucu ajah\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/category/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"category",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729a862d96b4f31cb8ea5de"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"20-UIf8FxlyOJoAChyWA7ngWtBn3+o\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 05:33:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Category not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "deleted",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/category/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"category",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6729a862d96b4f31cb8ea5df"
+								}
+							]
+						},
+						"description": "The API endpoint sends an HTTP DELETE request to delete a category based on the provided ID. Upon successful execution, the response will have a status code of 200 and a JSON content type. The response body will consist of a JSON object with a \"message\" key, which may be empty. Below is the JSON schema for the response:\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"message\": {\n      \"type\": \"string\"\n    }\n  }\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "200 OK Deleted",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/category/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"category",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729a862d96b4f31cb8ea5df"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-oSB9C9UJoaUkZ5Mu5gkTHkZwuV4\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 05:34:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Category deleted successfully\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Cerita Si Amal\" , \r\n    \"authorId\": \"6729a2ed4cf7422b00b4922f\", \r\n    \"description\": \"Menceritakan Amal yang bahagia\" , \r\n    \"categoryIds\": [\"6729aaddbe772fdba406fe9b\", \"6729a862d96b4f31cb8ea5df\"], \r\n    \"stock\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/book",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"book"
+							]
+						},
+						"description": "### Add Book\n\nThis endpoint allows the client to add a new book to the database.\n\n#### Request Body\n\n- title (string): The title of the book.\n    \n- authorId (string): The ID of the author of the book.\n    \n- description (string): A brief description of the book.\n    \n- categoryIds (array of strings): An array of category IDs associated with the book.\n    \n- stock (number): The stock quantity of the book.\n    \n\n#### Response\n\n- Status: 201\n    \n- Content-Type: application/json\n    \n- message (string): A message regarding the request.\n    \n- book (object): Details of the added book including title, authorId, categoryIds, description, stock, _id, createdAt, updatedAt, and __v.\n    \n- warning (string, optional): A warning message, if any.\n    \n\nExample Response:\n\n``` json\n{\n    \"message\": \"\",\n    \"book\": {\n        \"title\": \"\",\n        \"authorId\": \"\",\n        \"categoryIds\": [\"\"],\n        \"description\": \"\",\n        \"stock\": 0,\n        \"_id\": \"\",\n        \"createdAt\": \"\",\n        \"updatedAt\": \"\",\n        \"__v\": 0\n    }\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "201 Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Cerita Si Mosul\" , \r\n    \"authorId\": \"6729a2ed4cf7422b00b4922f\", \r\n    \"description\": \"Menceritakan Perjalanan Hidup Mosul\" , \r\n    \"categoryIds\": [\"6729aaddbe772fdba406fe9b\", \"6729aac0be772fdba406fe99\"], \r\n    \"stock\": 10\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/book",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"book"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "365"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"16d-B9/vVfhsCLA5Mg5VUFV3+ij4lQU\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 05:49:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Book created successfully.\",\n    \"book\": {\n        \"title\": \"Cerita Si Mosul\",\n        \"authorId\": \"6729a2ed4cf7422b00b4922f\",\n        \"categoryIds\": [\n            \"6729aaddbe772fdba406fe9b\",\n            \"6729aac0be772fdba406fe99\"\n        ],\n        \"description\": \"Menceritakan Perjalanan Hidup Mosul\",\n        \"stock\": 10,\n        \"_id\": \"6729b1fd83e41596108db508\",\n        \"createdAt\": \"2024-11-05T05:49:49.237Z\",\n        \"updatedAt\": \"2024-11-05T05:49:49.237Z\",\n        \"__v\": 0\n    }\n}"
+						},
+						{
+							"name": "400 Bad Request AuthorId",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Cerita Si Amal\" , \r\n    \"authorId\": \"6729a3624cf7422b00b49231\", \r\n    \"description\": \"Menceritakan Amal yang bahagia\" , \r\n    \"categoryIds\": [\"6729aaddbe772fdba406fe9b\"], \r\n    \"stock\": 10\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/book",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"book"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "31"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1f-oTyxiicAteKeEhiegbu7LALpaNw\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 06:13:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Invalid Author ID\"\n}"
+						},
+						{
+							"name": "Created but category not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Cerita Si Amal\" , \r\n    \"authorId\": \"6729a2ed4cf7422b00b4922f\", \r\n    \"description\": \"Menceritakan Amal yang bahagia\" , \r\n    \"categoryIds\": [\"6729aaddbe772fdba406fe9b\", \"6729a862d96b4f31cb8ea5df\"], \r\n    \"stock\": 10\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/book",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"book"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "452"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c4-J7sW9xXwNLoicpAaO/Si+hlfjTs\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 06:15:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Book created successfully.\",\n    \"book\": {\n        \"title\": \"Cerita Si Amal\",\n        \"authorId\": \"6729a2ed4cf7422b00b4922f\",\n        \"categoryIds\": [\n            \"6729aaddbe772fdba406fe9b\"\n        ],\n        \"description\": \"Menceritakan Amal yang bahagia\",\n        \"stock\": 10,\n        \"_id\": \"6729b806da308acefcbe240d\",\n        \"createdAt\": \"2024-11-05T06:15:34.270Z\",\n        \"updatedAt\": \"2024-11-05T06:15:34.270Z\",\n        \"__v\": 0\n    },\n    \"warning\": \"Category ID berikut belum dimasukkan dalam database categories atau telah dihapus: 6729a862d96b4f31cb8ea5df\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"books"
+							]
+						},
+						"description": "### Get Books\n\nThis endpoint retrieves a list of books.\n\n#### Request\n\n- Method: GET\n    \n- URL: `http://localhost:3000/api/v1/books`\n    \n\n#### Response\n\n- Status: 200 OK\n    \n- Content-Type: application/json\n    \n- { \"massage\": \"\", \"book\": \\[ { \"_id\": \"\", \"title\": \"\", \"authorId\": { \"_id\": \"\", \"name\": \"\", \"bio\": \"\" }, \"categoryIds\": \\[ { \"_id\": \"\", \"name\": \"\", \"description\": \"\" } \\], \"description\": \"\", \"stock\": 0, \"createdAt\": \"\", \"updatedAt\": \"\", \"__v\": 0 } \\]}"
+					},
+					"response": [
+						{
+							"name": "200 OK Get All",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/books",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"books"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "964"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3c4-XmqpZBT3hyksFF+1t5hVsj4LWdI\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 06:19:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"massage\": \"List Buku\",\n    \"book\": [\n        {\n            \"_id\": \"6729b1fd83e41596108db508\",\n            \"title\": \"Cerita Si Mosul\",\n            \"authorId\": {\n                \"_id\": \"6729a2ed4cf7422b00b4922f\",\n                \"name\": \"Mosul Si Ganteng\",\n                \"bio\": \"Pengendali petir\"\n            },\n            \"categoryIds\": [\n                {\n                    \"_id\": \"6729aaddbe772fdba406fe9b\",\n                    \"name\": \"Romance\",\n                    \"description\": \"Romansa, Hubungan, Cinta kasih\"\n                },\n                {\n                    \"_id\": \"6729aac0be772fdba406fe99\",\n                    \"name\": \"Horor\",\n                    \"description\": \"Menyeramkan, Adrenalin, 15+\"\n                }\n            ],\n            \"description\": \"Menceritakan Perjalanan Hidup Mosul\",\n            \"stock\": 10,\n            \"createdAt\": \"2024-11-05T05:49:49.237Z\",\n            \"updatedAt\": \"2024-11-05T05:49:49.237Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6729b7bbda308acefcbe2407\",\n            \"title\": \"Cerita Si Amal\",\n            \"authorId\": {\n                \"_id\": \"6729a2ed4cf7422b00b4922f\",\n                \"name\": \"Mosul Si Ganteng\",\n                \"bio\": \"Pengendali petir\"\n            },\n            \"categoryIds\": [\n                {\n                    \"_id\": \"6729aaddbe772fdba406fe9b\",\n                    \"name\": \"Romance\",\n                    \"description\": \"Romansa, Hubungan, Cinta kasih\"\n                }\n            ],\n            \"description\": \"Menceritakan Amal yang bahagia\",\n            \"stock\": 10,\n            \"createdAt\": \"2024-11-05T06:14:19.500Z\",\n            \"updatedAt\": \"2024-11-05T06:14:19.500Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "After Deleted",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/books",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"books"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "448"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c0-8gk/3ic/NNBQg8/SAqE08DSp+RQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 06:39:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"massage\": \"List Buku\",\n    \"book\": [\n        {\n            \"_id\": \"6729b7bbda308acefcbe2407\",\n            \"title\": \"Cerita Si Amal\",\n            \"authorId\": {\n                \"_id\": \"6729a2ed4cf7422b00b4922f\",\n                \"name\": \"Mosul Si Ganteng\",\n                \"bio\": \"Pengendali petir\"\n            },\n            \"categoryIds\": [\n                {\n                    \"_id\": \"6729aaddbe772fdba406fe9b\",\n                    \"name\": \"Romance\",\n                    \"description\": \"Romansa, Hubungan, Cinta kasih\"\n                }\n            ],\n            \"description\": \"Menceritakan Amal yang bahagia\",\n            \"stock\": 10,\n            \"createdAt\": \"2024-11-05T06:14:19.500Z\",\n            \"updatedAt\": \"2024-11-05T06:14:19.500Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/book/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"book",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6729b1fd83e41596108db508"
+								}
+							]
+						},
+						"description": "### Get Book Details\n\nThis endpoint retrieves the details of a specific book based on the provided book ID.\n\n#### Request\n\n- Method: GET\n    \n- Endpoint: `http://localhost:3000/api/v1/book/:id`\n    \n\n#### Response\n\n- Status: 200\n    \n- Content-Type: application/json\n    \n- { \"book\": { \"_id\": \"\", \"title\": \"\", \"authorId\": { \"_id\": \"\", \"name\": \"\" }, \"categoryIds\": \\[ { \"_id\": \"\", \"name\": \"\" } \\], \"description\": \"\", \"stock\": 0, \"createdAt\": \"\", \"updatedAt\": \"\", \"__v\": 0, \"coverImage\": \"\" } }\n    \n\n#### Example Response\n\n``` json\n{\n    \"book\": {\n        \"_id\": \"\",\n        \"title\": \"\",\n        \"authorId\": {\n            \"_id\": \"\",\n            \"name\": \"\"\n        },\n        \"categoryIds\": [\n            {\n                \"_id\": \"\",\n                \"name\": \"\"\n            }\n        ],\n        \"description\": \"\",\n        \"stock\": 0,\n        \"createdAt\": \"\",\n        \"updatedAt\": \"\",\n        \"__v\": 0,\n        \"coverImage\": \"\"\n    }\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "200 OK Get By ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/book/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"book",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729b1fd83e41596108db508"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "408"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"198-C7L9FbXRPM8M2XxlLgtmSY/5nfw\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 06:20:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"book\": {\n        \"_id\": \"6729b1fd83e41596108db508\",\n        \"title\": \"Cerita Si Mosul\",\n        \"authorId\": {\n            \"_id\": \"6729a2ed4cf7422b00b4922f\",\n            \"name\": \"Mosul Si Ganteng\"\n        },\n        \"categoryIds\": [\n            {\n                \"_id\": \"6729aaddbe772fdba406fe9b\",\n                \"name\": \"Romance\"\n            },\n            {\n                \"_id\": \"6729aac0be772fdba406fe99\",\n                \"name\": \"Horor\"\n            }\n        ],\n        \"description\": \"Menceritakan Perjalanan Hidup Mosul\",\n        \"stock\": 10,\n        \"createdAt\": \"2024-11-05T05:49:49.237Z\",\n        \"updatedAt\": \"2024-11-05T05:49:49.237Z\",\n        \"__v\": 0\n    }\n}"
+						},
+						{
+							"name": "404 Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/book/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"book",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729b1fd83e41596108db509"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "28"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c-cQwmtD1BWh61ijVnPtLbyd6fnN8\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 06:22:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Book not found\"\n}"
+						},
+						{
+							"name": "After Updated",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/book/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"book",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729b1fd83e41596108db508"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "401"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"191-vl8811vjfpQVxhpG8DNflcx3NWo\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 06:32:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"book\": {\n        \"_id\": \"6729b1fd83e41596108db508\",\n        \"title\": \"Cerita Mosul Ganteng\",\n        \"authorId\": {\n            \"_id\": \"6729a2ed4cf7422b00b4922f\",\n            \"name\": \"Mosul Si Ganteng\"\n        },\n        \"categoryIds\": [\n            {\n                \"_id\": \"6729aaddbe772fdba406fe9b\",\n                \"name\": \"Romance\"\n            },\n            {\n                \"_id\": \"6729aac0be772fdba406fe99\",\n                \"name\": \"Horor\"\n            }\n        ],\n        \"description\": \"Perjalanan Anak Ganteng\",\n        \"stock\": 10,\n        \"createdAt\": \"2024-11-05T05:49:49.237Z\",\n        \"updatedAt\": \"2024-11-05T06:25:15.838Z\",\n        \"__v\": 0\n    }\n}"
+						},
+						{
+							"name": "After Deleted",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/book/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"book",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729b1fd83e41596108db508"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"20-IGN1fq5KW2fnBBZqyvxAAu744b8\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 06:37:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Buku telah dihapus\"\n}"
+						},
+						{
+							"name": "After Upload",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/book/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"book",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729b7bbda308acefcbe2407"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "415"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"19f-4WG9YAflHLYHzLcktPaGkqo17hE\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 06:44:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"book\": {\n        \"_id\": \"6729b7bbda308acefcbe2407\",\n        \"title\": \"Cerita Si Amal\",\n        \"authorId\": {\n            \"_id\": \"6729a2ed4cf7422b00b4922f\",\n            \"name\": \"Mosul Si Ganteng\"\n        },\n        \"categoryIds\": [\n            {\n                \"_id\": \"6729aaddbe772fdba406fe9b\",\n                \"name\": \"Romance\"\n            }\n        ],\n        \"description\": \"Menceritakan Amal yang bahagia\",\n        \"stock\": 10,\n        \"createdAt\": \"2024-11-05T06:14:19.500Z\",\n        \"updatedAt\": \"2024-11-05T06:14:19.500Z\",\n        \"__v\": 0,\n        \"coverImage\": \"public\\\\cover_book\\\\1730788917069-CoverBuku.jpg\"\n    }\n}"
+						},
+						{
+							"name": "After Borrowed Book",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/book/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"book",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729b7bbda308acefcbe2407"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "414"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"19e-6DNl37stRyrda5CxS2vF0KgQY4c\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 08:00:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"book\": {\n        \"_id\": \"6729b7bbda308acefcbe2407\",\n        \"title\": \"Cerita Si Amal\",\n        \"authorId\": {\n            \"_id\": \"6729a2ed4cf7422b00b4922f\",\n            \"name\": \"Mosul Si Ganteng\"\n        },\n        \"categoryIds\": [\n            {\n                \"_id\": \"6729aaddbe772fdba406fe9b\",\n                \"name\": \"Romance\"\n            }\n        ],\n        \"description\": \"Menceritakan Amal yang bahagia\",\n        \"stock\": 8,\n        \"createdAt\": \"2024-11-05T06:14:19.500Z\",\n        \"updatedAt\": \"2024-11-05T06:14:19.500Z\",\n        \"__v\": 0,\n        \"coverImage\": \"public\\\\cover_book\\\\1730788917069-CoverBuku.jpg\"\n    }\n}"
+						},
+						{
+							"name": "After Retuned Book",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/book/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"book",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729b7bbda308acefcbe2407"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "414"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"19e-iHwJ+UF7mAbLyMX8YKwrcUC+Z5w\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 08:02:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"book\": {\n        \"_id\": \"6729b7bbda308acefcbe2407\",\n        \"title\": \"Cerita Si Amal\",\n        \"authorId\": {\n            \"_id\": \"6729a2ed4cf7422b00b4922f\",\n            \"name\": \"Mosul Si Ganteng\"\n        },\n        \"categoryIds\": [\n            {\n                \"_id\": \"6729aaddbe772fdba406fe9b\",\n                \"name\": \"Romance\"\n            }\n        ],\n        \"description\": \"Menceritakan Amal yang bahagia\",\n        \"stock\": 9,\n        \"createdAt\": \"2024-11-05T06:14:19.500Z\",\n        \"updatedAt\": \"2024-11-05T06:14:19.500Z\",\n        \"__v\": 0,\n        \"coverImage\": \"public\\\\cover_book\\\\1730788917069-CoverBuku.jpg\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"\",\r\n    \"description\": \"Perjalanan Anak Ganteng\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/book/:id?=",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"book",
+								":id"
+							],
+							"query": [
+								{
+									"key": null,
+									"value": ""
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6729b1fd83e41596108db508"
+								}
+							]
+						},
+						"description": "### Update Book Details\n\nThis endpoint allows the user to update the details of a specific book by providing the book ID in the URL path.\n\n#### Request Body\n\n- `title` (string, optional): The updated title of the book.\n    \n- `description` (string): The updated description of the book.\n    \n\nExample:\n\n``` json\n{\n    \"title\": \"\",\n    \"description\": \"Perjalanan Anak Ganteng\"\n}\n\n ```\n\n#### Response\n\n- Status: 400\n    \n- Content-Type: application/json\n    \n\nExample Response Body:\n\n``` json\n{\n    \"message\": \"\",\n    \"book\": {\n        \"_id\": \"\",\n        \"title\": \"\",\n        \"authorId\": {\n            \"_id\": \"\",\n            \"name\": \"\"\n        },\n        \"categoryIds\": [\n            {\n                \"_id\": \"\",\n                \"name\": \"\"\n            }\n        ],\n        \"description\": \"\",\n        \"stock\": 0,\n        \"createdAt\": \"\",\n        \"updatedAt\": \"\",\n        \"__v\": 0\n    }\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "200 OK Updated",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Cerita Mosul Ganteng\",\r\n    \"description\": \"Perjalanan Anak Ganteng\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/book/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"book",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729b1fd83e41596108db508"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "439"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1b7-Cxu2aCGCJixnDeFewGQODkr+YzE\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 06:25:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Book updated successfully\",\n    \"book\": {\n        \"_id\": \"6729b1fd83e41596108db508\",\n        \"title\": \"Cerita Mosul Ganteng\",\n        \"authorId\": {\n            \"_id\": \"6729a2ed4cf7422b00b4922f\",\n            \"name\": \"Mosul Si Ganteng\"\n        },\n        \"categoryIds\": [\n            {\n                \"_id\": \"6729aaddbe772fdba406fe9b\",\n                \"name\": \"Romance\"\n            },\n            {\n                \"_id\": \"6729aac0be772fdba406fe99\",\n                \"name\": \"Horor\"\n            }\n        ],\n        \"description\": \"Perjalanan Anak Ganteng\",\n        \"stock\": 10,\n        \"createdAt\": \"2024-11-05T05:49:49.237Z\",\n        \"updatedAt\": \"2024-11-05T06:25:15.838Z\",\n        \"__v\": 0\n    }\n}"
+						},
+						{
+							"name": "404 Not Found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Cerita Mosul Ganteng\",\r\n    \"description\": \"Perjalanan Anak Ganteng\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/book/:id?=",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"book",
+										":id"
+									],
+									"query": [
+										{
+											"key": null,
+											"value": ""
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729b1fd83e41596108db500"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "28"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c-cQwmtD1BWh61ijVnPtLbyd6fnN8\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 06:26:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Book not found\"\n}"
+						},
+						{
+							"name": "400 Bad Request",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"\",\r\n    \"description\": \"Perjalanan Anak Ganteng\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/book/:id?=",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"book",
+										":id"
+									],
+									"query": [
+										{
+											"key": null,
+											"value": ""
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729b1fd83e41596108db508"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26-r+gBGm9lLQ7GTdbiaxxDVsaPj6k\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 06:32:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"title tidak boleh kosong\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/book/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"book",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6729b1fd83e41596108db508"
+								}
+							]
+						},
+						"description": "### DELETE /api/v1/book/:id\n\nThis endpoint is used to delete a specific book identified by its unique ID.\n\n#### Request Body\n\nThis request does not require a request body.\n\n#### Response\n\n- Status: 200\n    \n- Content-Type: application/json\n    \n\nExample Response Body:\n\n``` json\n{\n    \"message\": \"\"\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "200 Ok Deleted",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/book/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"book",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729b1fd83e41596108db508"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"27-2sU+wH8LsO2HgYqDa0daGODIV30\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 06:34:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Book deleted successfully\"\n}"
+						},
+						{
+							"name": "404 Not Found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/book/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"book",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729b1fd83e41596108db509"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "28"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c-cQwmtD1BWh61ijVnPtLbyd6fnN8\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 06:35:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Book not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Upload",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"description": "### Upload Book Cover Image\n\nThis endpoint allows the client to upload a cover image for a specific book.\n\n#### Request Body\n\n- `bookId` (text): The ID of the book for which the cover image is being uploaded.\n    \n- `image` (file): The cover image file to be uploaded.\n    \n\n#### Response\n\nThe response will be a JSON object with the following properties:\n\n- `message` (string): A message indicating the status of the upload process.\n    \n- `coverImage` (string): The URL or identifier of the uploaded cover image.\n    \n\n#### Example Response\n\n``` json\n{\n    \"message\": \"\",\n    \"coverImage\": \"\"\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "200 OK Upload",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "bookId",
+											"value": "6729b7bbda308acefcbe2407",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/EL/OneDrive/Pictures/Camera Roll/CoverBuku.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/book/upload",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"book",
+										"upload"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "104"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"68-pT6MSiQLvUDAbvgaa1irGDlJ5UY\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 06:41:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Image uploaded successfully\",\n    \"coverImage\": \"public\\\\cover_book\\\\1730788917069-CoverBuku.jpg\"\n}"
+						},
+						{
+							"name": "400 Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "bookId",
+											"value": "6729b7bbda308acefcbe2407",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/EL/OneDrive/Documents/Eldoni Mosul - Surat Pernyataan.pdf"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/book/upload",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"book",
+										"upload"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "44"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2c-tWijC3PMWaewaLJ1FcXRsbXeT7o\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 06:42:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Book ID and image are required\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Borrower",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Amaliyah\",\r\n    \"contact\": \"081234567890\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/borrower",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"borrower"
+							]
+						},
+						"description": "### Borrower Creation\n\nThis endpoint allows the creation of a new borrower.\n\n#### Request Body\n\n- **name** (string, required): The name of the borrower.\n    \n- **contact** (string, required): The contact information of the borrower.\n    \n\n#### Response\n\nThe response is in JSON format with the following schema:\n\n``` json\n{\n  \"name\": \"\",\n  \"contact\": \"\",\n  \"borrowCount\": 0,\n  \"_id\": \"\",\n  \"joinAt\": \"\",\n  \"updatedAt\": \"\",\n  \"__v\": 0\n}\n\n ```\n\n- **name** (string): The name of the borrower.\n    \n- **contact** (string): The contact information of the borrower.\n    \n- **borrowCount** (number): The count of borrow actions.\n    \n- **_id** (string): The unique identifier of the borrower.\n    \n- **joinAt** (string): The date when the borrower joined.\n    \n- **updatedAt** (string): The date when the borrower information was last updated.\n    \n- **__v** (number): Version key for internal use.\n    \n\n#### Example Response\n\n``` json\n{\n  \"name\": \"\",\n  \"contact\": \"\",\n  \"borrowCount\": 0,\n  \"_id\": \"\",\n  \"joinAt\": \"\",\n  \"updatedAt\": \"\",\n  \"__v\": 0\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "201 Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Eldoni Mosul\",\r\n    \"contact\": \"088877776666\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/borrower",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"borrower"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "180"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b4-KsJmo69cdkNkZzrSBv9m9dbejsw\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 07:11:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"Eldoni Mosul\",\n    \"contact\": \"088877776666\",\n    \"borrowCount\": 0,\n    \"_id\": \"6729c514357b3655b3df27c5\",\n    \"joinAt\": \"2024-11-05T07:11:16.510Z\",\n    \"updatedAt\": \"2024-11-05T07:11:16.511Z\",\n    \"__v\": 0\n}"
+						},
+						{
+							"name": "400 Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"\",\r\n    \"contact\": \"088877776666\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/borrower",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"borrower"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "49"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"31-n01v6VReVptDWni2/0gLtfs+7UQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 07:12:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"The name or contact cannot be empty\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/borrowers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"borrowers"
+							]
+						},
+						"description": "### GET /api/v1/borrowers\n\nThis endpoint retrieves a list of borrowers.\n\n#### Request\n\nNo request body is required for this endpoint.\n\n#### Response\n\nThe response will be a JSON object with the following schema:\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"massage\": {\n      \"type\": \"string\"\n    },\n    \"borrower\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"_id\": {\n            \"type\": \"string\"\n          },\n          \"name\": {\n            \"type\": \"string\"\n          },\n          \"contact\": {\n            \"type\": \"string\"\n          },\n          \"borrowCount\": {\n            \"type\": \"integer\"\n          },\n          \"joinAt\": {\n            \"type\": \"string\"\n          },\n          \"updatedAt\": {\n            \"type\": \"string\"\n          },\n          \"__v\": {\n            \"type\": \"integer\"\n          }\n        }\n      }\n    }\n  }\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "200 OK Get All",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/borrowers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"borrowers"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "398"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"18e-fkIlX3lr/yNVA/338Y8gAZuN56A\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 07:14:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"massage\": \"Borrower List\",\n    \"borrower\": [\n        {\n            \"_id\": \"6729c514357b3655b3df27c5\",\n            \"name\": \"Eldoni Mosul\",\n            \"contact\": \"088877776666\",\n            \"borrowCount\": 0,\n            \"joinAt\": \"2024-11-05T07:11:16.510Z\",\n            \"updatedAt\": \"2024-11-05T07:11:16.511Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6729c57e357b3655b3df27c7\",\n            \"name\": \"Amaliyah\",\n            \"contact\": \"081234567890\",\n            \"borrowCount\": 0,\n            \"joinAt\": \"2024-11-05T07:13:02.723Z\",\n            \"updatedAt\": \"2024-11-05T07:13:02.723Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/borrower/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"borrower",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6729c514357b3655b3df27c5"
+								}
+							]
+						},
+						"description": "# Get Borrower Details\n\nThis endpoint retrieves the details of a specific borrower identified by the provided ID.\n\n## Request\n\n### Path Parameters\n\n- `id` (string, required): The unique identifier of the borrower.\n    \n\n## Response\n\n- `borrower` (object): An object containing the details of the borrower.\n    \n    - `_id` (string): The unique identifier of the borrower.\n        \n    - `name` (string): The name of the borrower.\n        \n    - `contact` (string): The contact information of the borrower.\n        \n    - `borrowCount` (number): The count of items borrowed by the borrower.\n        \n    - `joinAt` (string): The date when the borrower joined.\n        \n    - `updatedAt` (string): The date when the borrower details were last updated.\n        \n    - `__v` (number): Version control field.\n        \n\n### Example\n\n``` json\n{\n  \"borrower\": {\n    \"_id\": \"\",\n    \"name\": \"\",\n    \"contact\": \"\",\n    \"borrowCount\": 0,\n    \"joinAt\": \"\",\n    \"updatedAt\": \"\",\n    \"__v\": 0\n  }\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "200 OK Get By Id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/borrower/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"borrower",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729c514357b3655b3df27c5"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "193"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c1-C5iKPRHjHXesYyLKEb/cf1fXM54\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 07:16:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"borrower\": {\n        \"_id\": \"6729c514357b3655b3df27c5\",\n        \"name\": \"Eldoni Mosul\",\n        \"contact\": \"088877776666\",\n        \"borrowCount\": 0,\n        \"joinAt\": \"2024-11-05T07:11:16.510Z\",\n        \"updatedAt\": \"2024-11-05T07:11:16.511Z\",\n        \"__v\": 0\n    }\n}"
+						},
+						{
+							"name": "404 Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/borrower/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"borrower",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729c514357b3655b3df27c3"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"20-i+/S+7LprTXY6SCRKG1XYEaCSxU\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 07:17:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Borrower not found\"\n}"
+						},
+						{
+							"name": "After Updated",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/borrower/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"borrower",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729c514357b3655b3df27c5"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "194"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c2-5O6f+CkXtQUnvVKlWBvaps4l+IA\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 07:22:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"borrower\": {\n        \"_id\": \"6729c514357b3655b3df27c5\",\n        \"name\": \"Mosul ganteng\",\n        \"contact\": \"000088889999\",\n        \"borrowCount\": 0,\n        \"joinAt\": \"2024-11-05T07:11:16.510Z\",\n        \"updatedAt\": \"2024-11-05T07:21:04.236Z\",\n        \"__v\": 0\n    }\n}"
+						},
+						{
+							"name": "After Deleted",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/borrower/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"borrower",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729c57e357b3655b3df27c7"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"21-IL2joRuc6d/XcKCywharEkuAHqM\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 07:29:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Borrower is Deleted\"\n}"
+						},
+						{
+							"name": "After Borrowed Book",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/borrower/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"borrower",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729c514357b3655b3df27c5"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "194"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c2-Uj72HgPpHyQqihkpSeld3Puv9kI\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 08:04:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"borrower\": {\n        \"_id\": \"6729c514357b3655b3df27c5\",\n        \"name\": \"Mosul ganteng\",\n        \"contact\": \"000088889999\",\n        \"borrowCount\": 3,\n        \"joinAt\": \"2024-11-05T07:11:16.510Z\",\n        \"updatedAt\": \"2024-11-05T07:21:04.236Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Mosul ganteng\",\r\n    \"contact\": \"000088889999\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/borrower/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"borrower",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6729c514357b3655b3df27c6"
+								}
+							]
+						},
+						"description": "### Update Borrower Details\n\nThis endpoint allows the client to update the details of a specific borrower.\n\n#### Request Body\n\n- `name` (string, optional): The updated name of the borrower.\n    \n- `contact` (string): The updated contact information of the borrower.\n    \n\n#### Response\n\nThe response is in JSON format and includes the following fields:\n\n- `message` (string): A message indicating the result of the request.\n    \n- `borrower` (object): An object containing the updated details of the borrower, including `_id`, `name`, `contact`, `borrowCount`, `joinAt`, `updatedAt`, and `__v`.\n    \n\n#### Example Response\n\n``` json\n{\n    \"message\": \"\",\n    \"borrower\": {\n        \"_id\": \"\",\n        \"name\": \"\",\n        \"contact\": \"\",\n        \"borrowCount\": 0,\n        \"joinAt\": \"\",\n        \"updatedAt\": \"\",\n        \"__v\": 0\n    }\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "200 Ok Update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Mosul ganteng\",\r\n    \"contact\": \"000088889999\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/borrower/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"borrower",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729c514357b3655b3df27c5"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "236"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ec-hdd7gmt1E3T8OYoDXNcuBt+kPmc\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 07:21:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Borrower updated successfully\",\n    \"borrower\": {\n        \"_id\": \"6729c514357b3655b3df27c5\",\n        \"name\": \"Mosul ganteng\",\n        \"contact\": \"000088889999\",\n        \"borrowCount\": 0,\n        \"joinAt\": \"2024-11-05T07:11:16.510Z\",\n        \"updatedAt\": \"2024-11-05T07:21:04.236Z\",\n        \"__v\": 0\n    }\n}"
+						},
+						{
+							"name": "404 Not Found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Mosul ganteng\",\r\n    \"contact\": \"000088889999\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/borrower/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"borrower",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729c514357b3655b3df27c6"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-V/b+V5pfZfCQrNujZWPdugLdgVs\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 07:21:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Borrower not found or deleted\"\n}"
+						},
+						{
+							"name": "400 Bad Request",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"\",\r\n    \"contact\": \"000088889999\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/borrower/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"borrower",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729c514357b3655b3df27c6"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "49"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"31-n01v6VReVptDWni2/0gLtfs+7UQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 07:28:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"The name or contact cannot be empty\"\n}"
+						}
+					]
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/borrower/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"borrower",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6729c57e357b3655b3df27c8"
+								}
+							]
+						},
+						"description": "### DELETE /api/v1/borrower/:id\n\nThis endpoint is used to delete a specific borrower identified by the provided ID.\n\n#### Request Body\n\nThis endpoint does not require a request body.\n\n#### Response\n\n- Status: 404\n    \n- Content-Type: application/json\n    \n\nExample Response Body:\n\n``` json\n{\n    \"message\": \"\"\n}\n\n ```\n\n#### Response JSON Schema\n\n``` json\n{\n    \"type\": \"object\",\n    \"properties\": {\n        \"message\": {\n            \"type\": \"string\"\n        }\n    }\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "200 OK Deleted",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/borrower/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"borrower",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729c57e357b3655b3df27c7"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-bXrjt7fgyaFQ33+92pGrPhNrMug\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 07:26:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Borrower deleted successfully\"\n}"
+						},
+						{
+							"name": "404 Not Found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/borrower/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"borrower",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6729c57e357b3655b3df27c8"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-V/b+V5pfZfCQrNujZWPdugLdgVs\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 07:27:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Borrower not found or deleted\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Borrowed Book",
+			"item": [
+				{
+					"name": "Borrow",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bookId\":\"6729b7bbda308acefcbe2407\" , \r\n    \"borrowerId\": \"6729c514357b3655b3df27c5\", \r\n    \"borrowDurationDays\": 7\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/borrow/book",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"borrow",
+								"book"
+							]
+						},
+						"description": "### Borrow Book\n\nThis endpoint allows users to borrow a book by providing the book ID, borrower ID, and the duration for which the book will be borrowed.\n\n#### Request Body\n\n- `bookId` (string): The ID of the book being borrowed.\n    \n- `borrowerId` (string): The ID of the borrower.\n    \n- `borrowDurationDays` (integer): The number of days for which the book will be borrowed.\n    \n\n#### Response\n\nUpon successful borrowing, the endpoint returns a status code of 201 and a JSON object with the following structure:\n\n``` json\n{\n    \"message\": \"\",\n    \"borrow\": {\n        \"bookId\": \"\",\n        \"borrowerId\": \"\",\n        \"borrowDate\": \"\",\n        \"dueDate\": \"\",\n        \"status\": \"\",\n        \"_id\": \"\",\n        \"createdAt\": \"\",\n        \"updatedAt\": \"\",\n        \"__v\": 0\n    }\n}\n\n ```\n\nThe `borrow` object contains details of the borrowed book, including the book ID, borrower ID, borrow date, due date, status, and other metadata.\n\n#### Example Response\n\n``` json\n{\n    \"message\": \"\",\n    \"borrow\": {\n        \"bookId\": \"\",\n        \"borrowerId\": \"\",\n        \"borrowDate\": \"\",\n        \"dueDate\": \"\",\n        \"status\": \"\",\n        \"_id\": \"\",\n        \"createdAt\": \"\",\n        \"updatedAt\": \"\",\n        \"__v\": 0\n    }\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "201 Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"bookId\":\"6729b7bbda308acefcbe2407\" , \r\n    \"borrowerId\": \"6729c514357b3655b3df27c5\", \r\n    \"borrowDurationDays\": 7\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/borrow/book",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"borrow",
+										"book"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "352"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"160-R805bLxjU7+XXaZ8M2maNQSpWeU\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 07:39:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Peminjaman buku berhasil ditambahkan.\",\n    \"borrow\": {\n        \"bookId\": \"6729b7bbda308acefcbe2407\",\n        \"borrowerId\": \"6729c514357b3655b3df27c5\",\n        \"borrowDate\": \"2024-11-05T07:39:48.405Z\",\n        \"dueDate\": \"2024-11-12T07:39:48.405Z\",\n        \"status\": \"active\",\n        \"_id\": \"6729cbc4530974b21b062e5b\",\n        \"createdAt\": \"2024-11-05T07:39:48.412Z\",\n        \"updatedAt\": \"2024-11-05T07:39:48.412Z\",\n        \"__v\": 0\n    }\n}"
+						},
+						{
+							"name": "400 Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"bookId\":\"6729b7bbda308acefcbe2406\" , \r\n    \"borrowerId\": \"6729c514357b3655b3df27c5\", \r\n    \"borrowDurationDays\": 7\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/borrow/book",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"borrow",
+										"book"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "49"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"31-a6fyXcg90m2fbnJl3b38CHHJgNw\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 07:45:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Buku tidak tersedia untuk dipinjam.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All \"Active\"",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"description": "### GET /api/v1/borrow/book/list\n\nThis endpoint retrieves a list of active borrows for books.\n\n#### Request\n\nNo request body is required for this endpoint.\n\n#### Response\n\nThe response will be a JSON object with the following properties:\n\n- `massage` (string): A message, if any.\n    \n- `activeBorrows` (array): An array of active borrow objects, each containing the following properties:\n    \n    - `_id` (string): The ID of the borrow.\n        \n    - `bookId` (object): An object representing the book, with the following properties:\n        \n        - `_id` (string): The ID of the book.\n            \n        - `title` (string): The title of the book.\n            \n    - `borrowerId` (object): An object representing the borrower, with the following properties:\n        \n        - `_id` (string): The ID of the borrower.\n            \n        - `name` (string): The name of the borrower.\n            \n        - `contact` (string): The contact information of the borrower.\n            \n    - `borrowDate` (string): The date of borrowing.\n        \n    - `dueDate` (string): The due date for returning the book.\n        \n    - `status` (string): The status of the borrow.\n        \n    - `createdAt` (string): The date of creation.\n        \n    - `updatedAt` (string): The date of last update.\n        \n    - `__v` (number): Version control.\n        \n\n#### Example\n\n``` json\n{\n    \"massage\": \"\",\n    \"activeBorrows\": [\n        {\n            \"_id\": \"\",\n            \"bookId\": {\n                \"_id\": \"\",\n                \"title\": \"\"\n            },\n            \"borrowerId\": {\n                \"_id\": \"\",\n                \"name\": \"\",\n                \"contact\": \"\"\n            },\n            \"borrowDate\": \"\",\n            \"dueDate\": \"\",\n            \"status\": \"\",\n            \"createdAt\": \"\",\n            \"updatedAt\": \"\",\n            \"__v\": 0\n        }\n    ]\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "500 Internal Server Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/borrow/book/list",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"borrow",
+										"book",
+										"list"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "23"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"17-ClTapOtFNqbs2ax97lKaxscrxyI\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 07:47:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"NOT_FOUND\"\n}"
+						},
+						{
+							"name": "200 OK Get All",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/borrow/book/list",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"borrow",
+										"book",
+										"list"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "814"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"32e-omaEAxBSedmJLIjPSMzIvDPwR04\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 07:52:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"massage\": \"Active Borrowed Book\",\n    \"activeBorrows\": [\n        {\n            \"_id\": \"6729cbc4530974b21b062e5b\",\n            \"bookId\": {\n                \"_id\": \"6729b7bbda308acefcbe2407\",\n                \"title\": \"Cerita Si Amal\"\n            },\n            \"borrowerId\": {\n                \"_id\": \"6729c514357b3655b3df27c5\",\n                \"name\": \"Mosul ganteng\",\n                \"contact\": \"000088889999\"\n            },\n            \"borrowDate\": \"2024-11-05T07:39:48.405Z\",\n            \"dueDate\": \"2024-11-12T07:39:48.405Z\",\n            \"status\": \"active\",\n            \"createdAt\": \"2024-11-05T07:39:48.412Z\",\n            \"updatedAt\": \"2024-11-05T07:39:48.412Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6729cca2530974b21b062e63\",\n            \"bookId\": {\n                \"_id\": \"6729b7bbda308acefcbe2407\",\n                \"title\": \"Cerita Si Amal\"\n            },\n            \"borrowerId\": {\n                \"_id\": \"6729c514357b3655b3df27c5\",\n                \"name\": \"Mosul ganteng\",\n                \"contact\": \"000088889999\"\n            },\n            \"borrowDate\": \"2024-11-05T07:43:30.373Z\",\n            \"dueDate\": \"2024-11-12T07:43:30.373Z\",\n            \"status\": \"active\",\n            \"createdAt\": \"2024-11-05T07:43:30.374Z\",\n            \"updatedAt\": \"2024-11-05T07:43:30.374Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "After Return",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/borrow/book/list",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"borrow",
+										"book",
+										"list"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "433"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1b1-naV9Pw0scL7Mw59cAZB+E5amJoQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 07:58:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"massage\": \"Active Borrowed Book\",\n    \"activeBorrows\": [\n        {\n            \"_id\": \"6729cca2530974b21b062e63\",\n            \"bookId\": {\n                \"_id\": \"6729b7bbda308acefcbe2407\",\n                \"title\": \"Cerita Si Amal\"\n            },\n            \"borrowerId\": {\n                \"_id\": \"6729c514357b3655b3df27c5\",\n                \"name\": \"Mosul ganteng\",\n                \"contact\": \"000088889999\"\n            },\n            \"borrowDate\": \"2024-11-05T07:43:30.373Z\",\n            \"dueDate\": \"2024-11-12T07:43:30.373Z\",\n            \"status\": \"active\",\n            \"createdAt\": \"2024-11-05T07:43:30.374Z\",\n            \"updatedAt\": \"2024-11-05T07:43:30.374Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Return",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"description": "### Borrow Book Return\n\nThis endpoint allows the user to return a borrowed book.\n\n#### Request Body\n\n- `borrowId`: (string) The ID of the borrowed book.\n    \n\n#### Response\n\nThe response is in JSON format and includes the following fields:\n\n- `message`: (string) A message related to the return process.\n    \n- `fine`: (number) The fine amount, if any, associated with the return.\n    \n\n#### Example Response\n\n``` json\n{\n    \"message\": \"\",\n    \"fine\": 0\n}\n\n ```\n\n#### JSON Schema\n\n``` json\n{\n    \"type\": \"object\",\n    \"properties\": {\n        \"message\": {\n            \"type\": \"string\"\n        },\n        \"fine\": {\n            \"type\": \"number\"\n        }\n    }\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "200 OK Return",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"borrowId\": \"6729cbc4530974b21b062e5b\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/borrow/book/return",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"borrow",
+										"book",
+										"return"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "49"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"31-/ufHnzRqdZA10q8HFuUcrKMOM0c\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 07:57:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Buku berhasil dikembalikan\",\n    \"fine\": 0\n}"
+						},
+						{
+							"name": "400 Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"borrowId\": \"6729cbc4530974b21b062e5c\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/borrow/book/return",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"borrow",
+										"book",
+										"return"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "61"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3d-yRVRoBh6OfSMVSg3TTC2EvRJXPk\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Nov 2024 07:57:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Peminjaman tidak valid atau sudah dikembalikan.\"\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
