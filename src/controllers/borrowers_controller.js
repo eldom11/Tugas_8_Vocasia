@@ -7,7 +7,7 @@ const borrowerController = {};
 borrowerController.getAllBorrowers = async (req,res) => {
     const borrower = await Borrower.find({ deletedAt: null })
     res.status(200).json({
-        borrower
+        massage: "Borrower List", borrower
     })
 }
 
@@ -63,7 +63,11 @@ borrowerController.createBorrower = async (req, res, next) => {
             name, 
             contact 
         } = req.body;
-    
+        
+        if (!name || !contact) {
+            return res.status(400).json({ message: "The name or contact cannot be empty" });
+        }
+        
         const update = { 
             name, 
             contact, 

@@ -48,12 +48,15 @@ categoryController.createCategory = async (req, res, next) => {
         res.status(201).json(category);
     } catch (error) {
         await session.abortTransaction();
+        if (error.code === 11000) {
+            return res.status(400).json({ message: "Category name must be unique" });
+        }
         next(error);
     } finally {
         session.endSession();
     }
 };
-  
+
 
 categoryController.updateCategory = async (req, res, next) => {
     const session = await mongoose.startSession();

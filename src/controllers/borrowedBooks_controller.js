@@ -8,7 +8,9 @@ const borrowedBookController = {};
 borrowedBookController.getAllActiveborrowedBooks = async (req, res) => {
   try {
     const activeBorrows = await BorrowedBook.find({ status: "active" }).populate('bookId', 'title').populate('borrowerId', 'name contact');
-    res.json(activeBorrows);
+    res.status(200).json({
+      massage: "Active Borrowed Book", activeBorrows
+    })
   } catch (error) {
     res.status(500).json({ message: errorName.NOT_FOUND });
   }
@@ -75,7 +77,7 @@ borrowedBookController.returnBook = async (req, res) => {
   const session = await mongoose.startSession();
   session.startTransaction();
   try {
-      const { borrowId, borrowerId, bookId } = req.body;
+      const { borrowId } = req.body;
       const borrow = await BorrowedBook.findById(borrowId).populate('bookId', 'title').populate('borrowerId', 'name contact').session(session);
 
       if (!borrow || borrow.status !== "active") {

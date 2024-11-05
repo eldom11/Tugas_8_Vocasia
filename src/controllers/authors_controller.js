@@ -18,7 +18,7 @@ authorController.getAuthorById = async (req,res) => {
         return res.status(404).json({ message: "Author not found" });
     }
     if (author.deletedAt !== undefined){
-        return res.status(400).json({ message: "Author telah dihapus" });
+        return res.status(404).json({ message: "Author telah dihapus" });
     } 
     res.status(200).json({
         author

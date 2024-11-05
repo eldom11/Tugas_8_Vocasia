@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 
 const borrowedBook = new mongoose.Schema({
-    bookId: { type: mongoose.Schema.Types.ObjectId, ref: 'Books', required: true },
-    borrowerId: { type: mongoose.Schema.Types.ObjectId, ref: 'Borrowers', required: true },
+    bookId: { type: mongoose.Schema.Types.ObjectId, ref: 'books', required: true },
+    borrowerId: { type: mongoose.Schema.Types.ObjectId, ref: 'borrowers', required: true },
     borrowDate: { type: Date, default: Date.now },
     dueDate: { type: Date, required: true },
     returnDate: Date,

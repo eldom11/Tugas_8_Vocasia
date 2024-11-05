@@ -17,7 +17,7 @@ booksController.getAllBooks = async (req, res, next) => {
     const book = await Book.find({ deletedAt: null })
       .populate("authorId", "name bio")
       .populate("categoryIds", "name description");
-    res.status(200).json({ book });
+    res.status(200).json({ massage: "List Buku", book });
   } catch (error) {
     next(error);
   }
@@ -33,7 +33,7 @@ booksController.getBookById = async (req, res, next) => {
       return res.status(404).json({ message: "Book not found" });
     }
     if (book.deletedAt !== undefined) {
-      return res.status(400).json({ message: "Buku telah dihapus" });
+      return res.status(404).json({ message: "Buku telah dihapus" });
     }
     res.status(200).json({
       book,
@@ -45,27 +45,28 @@ booksController.getBookById = async (req, res, next) => {
 
 booksController.createBook = async (req, res, next) => {
   const session = await mongoose.startSession();
+  let committed = false;
   session.startTransaction();
   try {
     const { title, authorId, description, categoryIds, stock } = req.body;
 
-    const authorExists = await Author.findById(authorId).session(session);
-
     if (!title || !authorId) {
+      await session.abortTransaction();
       return res
         .status(400)
         .json({ message: "The title and authorId cannot be empty" });
     }
-    if (!authorExists) {
+
+    const author = await Author.findById(authorId);
+    if (!author || author.deletedAt !== undefined) {
       await session.abortTransaction();
       return res.status(400).json({ message: "Invalid Author ID" });
     }
 
     const validCategories = [];
     const invalidCategories = [];
-
     for (const catId of categoryIds) {
-      const category = await Category.findById(catId).session(session);
+      const category = await Category.findById(catId);
       if (!category || category.deletedAt !== undefined) {
         invalidCategories.push(catId);
       } else {
@@ -82,6 +83,9 @@ booksController.createBook = async (req, res, next) => {
     });
 
     await book.save({ session });
+    await session.commitTransaction();
+    committed = true;
+    session.endSession(); 
 
     const response = {
       message: "Book created successfully.",
@@ -89,22 +93,17 @@ booksController.createBook = async (req, res, next) => {
     };
 
     if (invalidCategories.length > 0) {
-      response.warning = `category id berikut belum dimasukkan dalam database categories atau telah dihapus: ${invalidCategories.join(
+      response.warning = `Category ID berikut belum dimasukkan dalam database categories atau telah dihapus: ${invalidCategories.join(
         ", "
       )}`;
     }
 
-    await session.commitTransaction();
-    res
-      .status(201)
-      .json(response)
-      .populate("authorId", "name")
-      .populate("categoryIds", "name");
+    res.status(201).json(response);
   } catch (error) {
-    await session.abortTransaction();
+    if (!committed) await session.abortTransaction();
     next(error);
   } finally {
-    session.endSession();
+    if (!committed) session.endSession();
   }
 };
 
@@ -115,9 +114,13 @@ booksController.updateBook = async (req, res, next) => {
     const bookId = req.params.id;
     const { title, authorId, description, categoryIds, stock } = req.body;
 
+    if (!title){
+        return res.status(400).json({ message: "title tidak boleh kosong" });
+    }
     const author = await Author.findById(authorId).session(session);
     if (authorId !== undefined && !author) {
       await session.abortTransaction();
+      return res.status(400).json({ message: "Invalid Author ID" });
       return res.status(400).json({ message: "Invalid Author ID" });
     }
 
@@ -213,12 +216,10 @@ booksController.uploadImage = async (req, res, next) => {
     book.coverImage = imagePath;
     await book.save();
 
-    res
-      .status(200)
-      .json({
-        message: "Image uploaded successfully",
-        coverImage: book.coverImage,
-      });
+    res.status(200).json({
+      message: "Image uploaded successfully",
+      coverImage: book.coverImage,
+    });
   } catch (error) {
     next(error);
   }
