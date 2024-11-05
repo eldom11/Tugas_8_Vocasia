@@ -33,142 +33,159 @@ booksController.getBookById = async (req,res, next) => {
 }
 
 booksController.createBook = async (req, res, next) => {
-    try {
+  const session = await mongoose.startSession();
+  session.startTransaction();
+  try {
       const { title, authorId, description, categoryIds, stock } = req.body;
-  
-      const authorExists = await Author.findById(authorId);
+
+      const authorExists = await Author.findById(authorId).session(session);
       if (!authorExists) {
-        return res.status(400).json({ message: "Invalid Author ID" });
+          await session.abortTransaction();
+          return res.status(400).json({ message: "Invalid Author ID" });
       }
-  
+
       const validCategories = [];
       const invalidCategories = [];
-  
+
       for (const catId of categoryIds) {
-        const category = await Category.findById(catId);
-        if (!category || category.deletedAt !== undefined) {
-          invalidCategories.push(catId); 
-        } else {
-          validCategories.push(catId); 
-        }
+          const category = await Category.findById(catId).session(session);
+          if (!category || category.deletedAt !== undefined) {
+              invalidCategories.push(catId); 
+          } else {
+              validCategories.push(catId); 
+          }
       }
 
       const book = new Book({
-        title,
-        authorId,
-        description,
-        categoryIds: validCategories, 
-        stock,
-        updatedAt: new Date(),
-        createdAt: new Date()
-      });
-  
-      await book.save();
-      
-      const response = {
-        message: "Book created successfully.",
-        book: book,
-      };
-  
-      if (invalidCategories.length > 0) {
-        response.warning = `category id berikut belum dimasukkan dalam database categories atau telah dihapus: ${invalidCategories.join(", ")}`;
-      }
-  
-      res.status(201).json(response).populate('authorId', 'name').populate('categoryIds', 'name');
-    } catch (error) {
-      next(error);
-    }
-};
-
-booksController.updateBook = async (req, res, next) => {
-    try {
-      const bookId = req.params.id;
-      const { title, authorId, description, categoryIds, stock } = req.body;
-  
-      const author = await Author.findById(authorId);
-      if (authorId !== undefined){
-        if (!author) {
-          return res.status(400).json({ message: "Invalid Author ID" });
-        }
-      }
-      
-      if (categoryIds !== undefined) {
-        const validCategories = [];
-        const invalidCategories = [];
-        for (const catId of categoryIds) {
-          const category = await Category.findById(catId);
-          if (!category || category.deletedAt !== undefined) {
-            invalidCategories.push(catId); 
-          } else {
-            validCategories.push(catId); 
-          }
-        };
-
-        const updateData = {
           title,
           authorId,
           description,
-          categoryIds: validCategories,
-          stock,
-          updatedAt: new Date(),
-        };
-        const book = await Book.findByIdAndUpdate(bookId, updateData, { new: true }).populate('authorId', 'name').populate('categoryIds', 'name');
-        if (!book) return res.status(404).json({ message: "Book not found" });
+          categoryIds: validCategories, 
+          stock
+      });
+
+      await book.save({ session });
     
-        const response = { message: "Book updated successfully", book };
-        if (invalidCategories.length > 0) {
-          response.warning = `category id berikut belum ada di database categories atau telah dihapus: ${invalidCategories.join(", ")}`;
-        }
-        res.status(200).json(response);
+      const response = {
+          message: "Book created successfully.",
+          book: book,
+      };
+
+      if (invalidCategories.length > 0) {
+          response.warning = `category id berikut belum dimasukkan dalam database categories atau telah dihapus: ${invalidCategories.join(", ")}`;
+      }
+
+      await session.commitTransaction();
+      res.status(201).json(response).populate('authorId', 'name').populate('categoryIds', 'name');
+  } catch (error) {
+      await session.abortTransaction();
+      next(error);
+  } finally {
+      session.endSession();
+  }
+};
+
+booksController.updateBook = async (req, res, next) => {
+  const session = await mongoose.startSession();
+  session.startTransaction();
+  try {
+      const bookId = req.params.id;
+      const { title, authorId, description, categoryIds, stock } = req.body;
+
+      const author = await Author.findById(authorId).session(session);
+      if (authorId !== undefined && !author) {
+          await session.abortTransaction();
+          return res.status(400).json({ message: "Invalid Author ID" });
+      }
+    
+      const validCategories = [];
+      const invalidCategories = [];
+      if (categoryIds !== undefined) {
+          for (const catId of categoryIds) {
+              const category = await Category.findById(catId).session(session);
+              if (!category || category.deletedAt !== undefined) {
+                  invalidCategories.push(catId); 
+              } else {
+                  validCategories.push(catId); 
+              }
+          }
       }
 
       const updateData = {
-        title,
-        authorId,
-        description,
-        stock,
-        updatedAt: new Date(),
+          title,
+          authorId,
+          description,
+          categoryIds: categoryIds ? validCategories : undefined,
+          stock,
+          updatedAt: new Date(),
       };
-  
-      const book = await Book.findByIdAndUpdate(bookId, updateData, { new: true }).populate('authorId', 'name').populate('categoryIds', 'name');
-      if (!book || book.deletedAt !== undefined) {
-        return res.status(404).json({ message: "Book not found" });
+
+      const book = await Book.findByIdAndUpdate(bookId, updateData, { new: true, session }).populate('authorId', 'name').populate('categoryIds', 'name');
+      if (!book) {
+          await session.abortTransaction();
+          return res.status(404).json({ message: "Book not found" });
       }
+  
       const response = { message: "Book updated successfully", book };
-  
+      if (invalidCategories.length > 0) {
+          response.warning = `category id berikut belum ada di database categories atau telah dihapus: ${invalidCategories.join(", ")}`;
+      }
+
+      await session.commitTransaction();
       res.status(200).json(response);
-    } catch (error) {
-      next(error);
-    }
-  };
-  
-booksController.deleteBook = async (req,res, next) => {
-  try{
-    const bookId = req.params.id
-    const book = await Book.findById(bookId)
-    if (!book || book.deletedAt !== undefined){ 
-        return res.status(404).json({ message: "Book not found" });
-    }
-    book.deletedAt = new Date()
-    await book.save() 
-    res.status(200).json({ message: "Book deleted successfully" });
   } catch (error) {
-    next(error);
+      await session.abortTransaction();
+      next(error);
+  } finally {
+      session.endSession();
   }
-}
+};
+  
+booksController.deleteBook = async (req, res, next) => {
+  const session = await mongoose.startSession();
+  session.startTransaction();
+  try {
+      const bookId = req.params.id;
+      const book = await Book.findById(bookId).session(session);
+      if (!book || book.deletedAt !== undefined) { 
+          await session.abortTransaction();
+          return res.status(404).json({ message: "Book not found" });
+      }
+      book.deletedAt = new Date();
+      await book.save({ session });
+
+      await session.commitTransaction();
+      res.status(200).json({ message: "Book deleted successfully" });
+  } catch (error) {
+      await session.abortTransaction();
+      next(error);
+  } finally {
+      session.endSession();
+  }
+};
 
 booksController.uploadImage = async (req, res, next) => {
-    try {
-        const image = req.file ? req.file.filename : null;
-        res.status(200).json({
-            image: req.file.path
-        });
-    } catch (error) {
-        res.status(500).json({
-            message: 'File upload failed',
-            error: error.message
-        });
-    }
+  try {
+      const { bookId } = req.body;
+      const imagePath = req.file ? req.file.path : null;
+
+      if (!bookId || !imagePath) {
+          return res.status(400).json({ message: "Book ID and image are required" });
+      }
+
+      const book = await Book.findById(bookId);
+      if (!book || book.deletedAt !== undefined) {
+          return res.status(404).json({ message: "Book not found" });
+      }
+
+      book.coverImage = imagePath;
+      await book.save();
+
+      res.status(200).json({ message: "Image uploaded successfully", coverImage: book.coverImage });
+  } catch (error) {
+      next(error);
+  }
 };
+
 
 module.exports = booksController;

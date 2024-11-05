@@ -7,8 +7,8 @@ const borrowedBook = new mongoose.Schema({
     dueDate: { type: Date, required: true },
     returnDate: Date,
     status: { type: String, enum: ['active', 'returned'], default: 'active' },
-    createdAt: Date,
-    updatedAt: Date
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now },
 })
 
 module.exports = borrowedBook

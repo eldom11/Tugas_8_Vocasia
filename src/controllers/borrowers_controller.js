@@ -24,63 +24,91 @@ borrowerController.getBorrowerById = async (req,res) => {
     })
 }
 
-borrowerController.createBorrower = async (req,res, next) => {
+borrowerController.createBorrower = async (req, res, next) => {
+    const session = await mongoose.startSession();
+    session.startTransaction();
     try {
         const { 
-            name,
-            contact,
+            name, 
+            contact 
         } = req.body;
-
+    
         if (!name || !contact) {
-          throw { name: errorName.BAD_REQUEST, message: errorMsg.WRONG_INPUT };
+            throw { name: errorName.BAD_REQUEST, message: errorMsg.WRONG_INPUT };
         }
     
-        const borrower = new Borrower({
-            name,
-            contact,
-            updatedAt: new Date(),
-            joinAt: new Date()
+        const borrower = new Borrower({ 
+            name, 
+            contact, 
         });
+        await borrower.save({ session });
     
-        await borrower.save();
+        await session.commitTransaction();
         res.status(201).json(borrower);
-      } catch (error) {
-        next(error);
-      }
-}
-
-borrowerController.updateBorrower = async (req,res, next) => {
-    try {
-        const borrowerId = req.params.id
-        const {name, contact} = req.body
-        
-        const update = {
-            name,
-            contact,
-            updatedAt: new Date()
-        }
-
-        const borrower = await Borrower.findByIdAndUpdate(borrowerId,update, {new: true})
-        if(!borrower || borrower.deletedAt !== undefined){
-            return res.status(404).json({ message: "Category not found" })
-        }
-        const response = { message: "Category updated successfully", borrower };
-        res.status(200).json(response);
     } catch (error) {
+        await session.abortTransaction();
         next(error);
+    } finally {
+        session.endSession();
     }
-}
+  };
 
-borrowerController.deleteBorrower = async (req,res) => {
-    const borrowerId = req.params.id
-    const borrower = await Borrower.findById(borrowerId)
-    if(!borrower || borrower.deletedAt !== undefined){
-        return res.status(404).json({ message: "Borrower not found or deleted" })
+  borrowerController.updateBorrower = async (req, res, next) => {
+    const session = await mongoose.startSession();
+    session.startTransaction();
+    try {
+        const borrowerId = req.params.id;
+        const { 
+            name, 
+            contact 
+        } = req.body;
+    
+        const update = { 
+            name, 
+            contact, 
+            updatedAt: new Date() 
+        };
+        const borrower = await Borrower.findByIdAndUpdate(borrowerId, update, { new: true, session });
+    
+        if (!borrower || borrower.deletedAt !== undefined) {
+            await session.abortTransaction();
+            return res.status(404).json({ message: "Borrower not found or deleted" });
+        }
+    
+        await session.commitTransaction();
+        res.status(200).json({ message: "Borrower updated successfully", borrower });
+    } catch (error) {
+        await session.abortTransaction();
+        next(error);
+    } finally {
+        session.endSession();
     }
-    borrower.deletedAt = new Date()
-    await borrower.save()
-    return res.status(200).json({ message: "Borrower deleted successfully" })
-}
+};
 
+borrowerController.deleteBorrower = async (req, res) => {
+    const session = await mongoose.startSession();
+    session.startTransaction();
+    try {
+        const borrowerId = req.params.id;
+        const borrower = await Borrower.findById(borrowerId).session(session);
+    
+        if (!borrower || borrower.deletedAt !== undefined) {
+            await session.abortTransaction();
+            return res.status(404).json({ message: "Borrower not found or deleted" });
+        }
+    
+        borrower.deletedAt = new Date();
+        await borrower.save({ session });
+        await session.commitTransaction();
+    
+        res.status(200).json({ message: "Borrower deleted successfully" });
+    } catch (error) {
+        await session.abortTransaction();
+        res.status(500).json({ message: error.message });
+    } finally {
+        session.endSession();
+    }
+  };
+  
 
 module.exports = borrowerController;
